@@ -173,6 +173,8 @@ class _PedoCheckState extends State<PedoCheck> {
         });
         positionStream.onError((error){
           print('Location Update Error: $error');
+          print('Test');
+
         });
     
     if (!mounted) return;
