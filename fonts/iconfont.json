@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5026",
+      "name": "图书",
+      "font_class": "tushu",
+      "unicode": "3447",
+      "unicode_decimal": 13383
+    },
+    {
+      "icon_id": "1049939",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}
