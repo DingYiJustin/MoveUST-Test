@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "146fa89d8452bffa0974d3bdc074fcdec61ffe2a66a2b175f3f452915506de75"
+build_start_time: [1675779004, 100744962]
+build_end_time: [1675779004, 127698898]
+inputs:
+  "/Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1675778988, 725318670]
+  "/Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/macos/Runner/AppDelegate.swift": !private [1664933376, 0]
+  "/Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/macos/Runner/MainFlutterWindow.swift": !private [1664933376, 0]
