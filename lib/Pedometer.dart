@@ -78,18 +78,36 @@ class _PedoCheckState extends State<PedoCheck> {
     initPlatformState();
   }
 
-  void onStepCount(StepCount event) {
+  Future<void> onStepCount(StepCount event) async {
     //如果moving是true的话，
       //减去上次stepcount的数字
       //将增加的数字赋值到总到步数上
       //将这次stepcount到数字赋值到_step上
     //如果moving是false
       //将这次stepcount到数字赋值到_step上
-    if(moving){
+    // print('counting steps');
+    // if(moving){
+    //   int newSteps = event.steps-lastSteps;
+    //   setState(() {
+    //     totalSteps+=newSteps;
+    //     lastSteps = event.steps;
+
+    //   });
+    // }
+    // else{
+    //   lastSteps = event.steps;
+    // }
+
+    Position position = await _determinePosition();
+    double dist = convertLatLonToDistance(position, lastPos);
+    print(dist);
+    if(dist>=5){
+      print('the position is updating:'+dist.toString());
       int newSteps = event.steps-lastSteps;
       setState(() {
         totalSteps+=newSteps;
         lastSteps = event.steps;
+        lastPos = position;
 
       });
     }
@@ -125,7 +143,21 @@ class _PedoCheckState extends State<PedoCheck> {
     });
   }
 
+
+  double convertLatLonToDistance(Position position, Position lastPos){
+    var p = 0.017453292519943295;
+            var c = cos;
+            var a = 0.5 - c((position.latitude - lastPos.latitude) * p)/2 + 
+                  c(lastPos.latitude * p) * c(position.latitude * p) * 
+                  (1 - c((position.longitude - lastPos.longitude) * p))/2;
+            var dist = 12742 * asin(sqrt(a))*1000;
+    return dist;
+            
+  }
+
   Future<void> initPlatformState() async {
+    lastPos = await _determinePosition();
+
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
     _pedestrianStatusStream
         .listen(onPedestrianStatusChanged)
@@ -135,45 +167,46 @@ class _PedoCheckState extends State<PedoCheck> {
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
     
-    lastPos = await _determinePosition();
-    StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-        (Position? position) {
-            if(position == null){
-              print('position is null');
-              return;
-            }
-            var p = 0.017453292519943295;
-            var c = cos;
-            var a = 0.5 - c((position.latitude - lastPos.latitude) * p)/2 + 
-                  c(lastPos.latitude * p) * c(position.latitude * p) * 
-                  (1 - c((position.longitude - lastPos.longitude) * p))/2;
-            var dist = 12742 * asin(sqrt(a))*1000;
-            lastPos = position;
-            
-            print(dist);
-            if(dist >= 10){
-              //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
-              print('distance:$dist');
+    
+    // StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+    //     (Position? position) {
+    //         if(position == null){
+    //           print('position is null');
+    //           return;
+    //         }
 
-              print('Location is updating:');
-              positionTimer.cancel();
-              if(!moving){
-                moving = true;
-              }
-              positionTimer = Timer.periodic(Duration(seconds: 5),(timer){
-                if(moving){
-                  moving=false;
-                }
-                else{
-                  timer.cancel();
-                }
-              });
-              print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
-            }
-        });
-        positionStream.onError((error){
-          print('Location Update Error: $error');
-        });
+    //         //change lat lon location distance to distance in meters
+
+    //         double dist = convertLatLonToDistance(position, lastPos);
+               
+              
+    //         lastPos = position;
+
+    //         print(dist);
+    //         if(dist >= 10){
+    //           //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
+    //           print('distance:$dist');
+
+    //           print('Location is updating:');
+    //           positionTimer.cancel();
+    //           if(!moving){
+    //             moving = true;
+    //           }
+    //           positionTimer = Timer.periodic(Duration(seconds: 5),(timer){
+    //             if(moving){
+    //               moving=false;
+    //               timer.cancel();
+    //             }
+    //             else{
+    //               timer.cancel();
+    //             }
+    //           });
+    //           print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
+    //         }
+    //     });
+    //     positionStream.onError((error){
+    //       print('Location Update Error: $error');
+    //     });
     
     if (!mounted) return;
   }

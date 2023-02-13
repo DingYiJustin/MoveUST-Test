@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		JullvZMzCKaPWeTpAmTnXPUoSas=
+		eAN9YeTwT4k/3vAys+syOudBs7Y=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		YwachY0IvEoqTBTmq+Dgg3miPPk=
+		UouRi7slbzBJ9uc6Emz8Ok65AfA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		WwuLa4FtxZV1GXTpwCoOnn3X8VU=
+		k6kccsAGo7VWaooJ+xG9dbnP2DM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -190,7 +190,7 @@
 		</data>
 		<key>Frameworks/geolocator_apple.framework/geolocator_apple</key>
 		<data>
-		0bQBTy/g1kmLHmHG27TDzSnv+YM=
+		yIlP6lZ9QiCu08ePNje7MjesriI=
 		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
@@ -202,7 +202,7 @@
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		p4iUpcmu8z4KDB4zHH7jVWaIFzs=
+		8hoFgl3ummo032jZck6fsmVFSTI=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -293,7 +293,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xIugNSXWdsAHejBGg9P8OynFNXqFoEzRwAKnlLDeWgE=
+			o0H++zDwhvFInC2yN299FYiT3DLr3sxnVCmoZH6VYBA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -307,7 +307,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LyxTzXEEW5YE9uvFlix+gsWhVCq+Y1aGk475Ap3pxPQ=
+			WBaa7HCRhA6uuvRDHcXAhzf9OB+vyPtT9Jw6Ie+O2kQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -356,7 +356,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			P1MHxIzmPGOiSS+KEtE1AL39cskhobRr2EcNLKrrk7I=
+			z10LniXARGn+GxFgqQLOXCY+/a6xgS5R5jUnCi9BvhA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -545,7 +545,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PgKh29jNlxg53fcSjWkLaXly3oc+ShqKHhgDwneJDzQ=
+			0F8DT/9RPZpBC9IYBi5qb9fDi0pvC/ahh7inxfrsu0A=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
@@ -566,7 +566,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mMbO7ZhLG5SJ9lt6gs6FSX5/RatnQv7bFW36Kd6zwzM=
+			KYTO7xzRujelV0JiiDZrp//e13Jxz0sHYjKRKAhfSfo=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
