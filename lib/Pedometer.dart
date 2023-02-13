@@ -32,6 +32,8 @@ class _PedoCheckState extends State<PedoCheck> {
   int totalSteps = 0;
   //the last total Step walked (today?) retrieved from the pedometer api
   int lastSteps = 0;
+
+  double lastDist = 0;
   
 
   final LocationSettings locationSettings =  const LocationSettings(
@@ -202,25 +204,35 @@ class _PedoCheckState extends State<PedoCheck> {
 
             //change lat lon location distance to distance in meters
             double dist = convertLatLonToDistance(position, lastPos);
+            print('last distance:$lastDist');
+            if((dist - lastDist)>=3 ||(dist - lastDist)<-3 ){
+              print('distance:$dist');
+              print('last distance:$lastDist');
+              dist = 0;
+              print('Update LAST POSITION');
+              lastPos = position;
+            }
+            lastDist = dist;
             
             //if counter is equals to 35, we update the lastPos 
             //to prevent that the distance away exceed 40 meters when not moving
-            if(counter == 35){
-              lastPos = position;
-              print('UPDATE LAST POSITIOn');
-              counter = 1;
-            }
-            else{
-              counter++;
-            }
-            print('counter:'+counter.toString());
-            print('currentLastPosition:'+lastPos.latitude.toString()+','+lastPos.longitude.toString());
-            print("currentPosition:"+position.latitude.toString()+","+position.longitude.toString());
+            // if(counter == 35){
+            //   lastPos = position;
+            //   print('UPDATE LAST POSITIOn');
+            //   counter = 1;
+            // }
+            // else{
+            //   counter++;
+            // }
+            // print('counter:'+counter.toString());
+            // print('currentLastPosition:'+lastPos.latitude.toString()+','+lastPos.longitude.toString());
+            // print("currentPosition:"+position.latitude.toString()+","+position.longitude.toString());
             print(dist);
 
             //if distance away is greater than 40, we assume that the user is truely walking
             //then we set the moving to true and set the timer
             if(dist >= 40){
+              lastDist = 0;
               lastPos = position;
               //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
               print('distance:$dist');
