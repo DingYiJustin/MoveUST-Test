@@ -18,12 +18,19 @@ class _PedoCheckState extends State<PedoCheck> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
+  //The last position updated
   late Position lastPos;
-  bool moving = false;
+  //If the position is 40 meters away compared to the last position, the moving is true
+  bool moving = false; 
+  //The counter to check whether the position should be update to lastPos
   int counter = 0;
+  //The counter to check whether the lastSteps should be update
   int stepCounter =0;
+  //The timer to set the moving to false after it has been set to true
   Timer positionTimer = Timer(Duration(days: 1), (){});
+  //totalSteps moved after starting the app
   int totalSteps = 0;
+  //the last total Step walked (today?) retrieved from the pedometer api
   int lastSteps = 0;
   
 
@@ -88,6 +95,13 @@ class _PedoCheckState extends State<PedoCheck> {
     //如果moving是false
       //将这次stepcount到数字赋值到_step上
     print('counting steps');
+
+    //if the moving is true
+      //add newSteps to the totalSteps
+    //if the moving is false
+      //if the stepCounter is equal to ten
+        //update the last steps otherwise all the steps 
+        //after opening the app will be recorded
     if(moving){
       int newSteps = event.steps-lastSteps;
       setState(() {
@@ -98,6 +112,9 @@ class _PedoCheckState extends State<PedoCheck> {
       });
     }
     else{
+      if(lastSteps==0){
+        lastSteps = event.steps;
+      }
       if(stepCounter == 10){
         lastSteps = event.steps;
         stepCounter = 0;
@@ -175,7 +192,7 @@ class _PedoCheckState extends State<PedoCheck> {
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
     
-    
+    //positionStream to determine whether the user is moving
     StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
         (Position? position) {
             if(position == null){
@@ -184,20 +201,25 @@ class _PedoCheckState extends State<PedoCheck> {
             }
 
             //change lat lon location distance to distance in meters
-
             double dist = convertLatLonToDistance(position, lastPos);
-               
-            if(counter == 30){
+            
+            //if counter is equals to 35, we update the lastPos 
+            //to prevent that the distance away exceed 40 meters when not moving
+            if(counter == 35){
               lastPos = position;
-              print('update last position');
+              print('UPDATE LAST POSITIOn');
               counter = 1;
             }
             else{
               counter++;
             }
-            
+            print('counter:'+counter.toString());
+            print('currentLastPosition:'+lastPos.latitude.toString()+','+lastPos.longitude.toString());
             print("currentPosition:"+position.latitude.toString()+","+position.longitude.toString());
             print(dist);
+
+            //if distance away is greater than 40, we assume that the user is truely walking
+            //then we set the moving to true and set the timer
             if(dist >= 40){
               lastPos = position;
               //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
@@ -208,7 +230,7 @@ class _PedoCheckState extends State<PedoCheck> {
               if(!moving){
                 moving = true;
               }
-              positionTimer = Timer.periodic(Duration(seconds: 25),(timer){
+              positionTimer = Timer.periodic(Duration(seconds: 30),(timer){
                 if(moving){
                   moving=false;
                   timer.cancel();
