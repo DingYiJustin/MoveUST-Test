@@ -20,6 +20,8 @@ class _PedoCheckState extends State<PedoCheck> {
   String _status = '?', _steps = '?';
   late Position lastPos;
   bool moving = false;
+  int counter = 0;
+  int stepCounter =0;
   Timer positionTimer = Timer(Duration(days: 1), (){});
   int totalSteps = 0;
   int lastSteps = 0;
@@ -85,35 +87,41 @@ class _PedoCheckState extends State<PedoCheck> {
       //将这次stepcount到数字赋值到_step上
     //如果moving是false
       //将这次stepcount到数字赋值到_step上
-    // print('counting steps');
-    // if(moving){
+    print('counting steps');
+    if(moving){
+      int newSteps = event.steps-lastSteps;
+      setState(() {
+        totalSteps+=newSteps;
+        lastSteps = event.steps;
+        stepCounter = 0;
+
+      });
+    }
+    else{
+      if(stepCounter == 10){
+        lastSteps = event.steps;
+        stepCounter = 0;
+      }
+      stepCounter++;
+      
+    }
+
+    // Position position = await _determinePosition();
+    // double dist = convertLatLonToDistance(position, lastPos);
+    // print(dist);
+    // if(dist>=5){
+    //   print('the position is updating:'+dist.toString());
     //   int newSteps = event.steps-lastSteps;
     //   setState(() {
     //     totalSteps+=newSteps;
     //     lastSteps = event.steps;
+    //     lastPos = position;
 
     //   });
     // }
     // else{
     //   lastSteps = event.steps;
     // }
-
-    Position position = await _determinePosition();
-    double dist = convertLatLonToDistance(position, lastPos);
-    print(dist);
-    if(dist>=5){
-      print('the position is updating:'+dist.toString());
-      int newSteps = event.steps-lastSteps;
-      setState(() {
-        totalSteps+=newSteps;
-        lastSteps = event.steps;
-        lastPos = position;
-
-      });
-    }
-    else{
-      lastSteps = event.steps;
-    }
 
     // print(event);
     // setState(() {
@@ -168,45 +176,53 @@ class _PedoCheckState extends State<PedoCheck> {
 
     
     
-    // StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-    //     (Position? position) {
-    //         if(position == null){
-    //           print('position is null');
-    //           return;
-    //         }
+    StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+        (Position? position) {
+            if(position == null){
+              print('position is null');
+              return;
+            }
 
-    //         //change lat lon location distance to distance in meters
+            //change lat lon location distance to distance in meters
 
-    //         double dist = convertLatLonToDistance(position, lastPos);
+            double dist = convertLatLonToDistance(position, lastPos);
                
-              
-    //         lastPos = position;
+            if(counter == 30){
+              lastPos = position;
+              print('update last position');
+              counter = 1;
+            }
+            else{
+              counter++;
+            }
+            
+            print("currentPosition:"+position.latitude.toString()+","+position.longitude.toString());
+            print(dist);
+            if(dist >= 40){
+              lastPos = position;
+              //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
+              print('distance:$dist');
 
-    //         print(dist);
-    //         if(dist >= 10){
-    //           //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
-    //           print('distance:$dist');
-
-    //           print('Location is updating:');
-    //           positionTimer.cancel();
-    //           if(!moving){
-    //             moving = true;
-    //           }
-    //           positionTimer = Timer.periodic(Duration(seconds: 5),(timer){
-    //             if(moving){
-    //               moving=false;
-    //               timer.cancel();
-    //             }
-    //             else{
-    //               timer.cancel();
-    //             }
-    //           });
-    //           print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
-    //         }
-    //     });
-    //     positionStream.onError((error){
-    //       print('Location Update Error: $error');
-    //     });
+              print('Location is updating:');
+              positionTimer.cancel();
+              if(!moving){
+                moving = true;
+              }
+              positionTimer = Timer.periodic(Duration(seconds: 25),(timer){
+                if(moving){
+                  moving=false;
+                  timer.cancel();
+                }
+                else{
+                  timer.cancel();
+                }
+              });
+              print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
+            }
+        });
+        positionStream.onError((error){
+          print('Location Update Error: $error');
+        });
     
     if (!mounted) return;
   }
