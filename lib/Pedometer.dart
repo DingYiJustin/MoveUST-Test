@@ -18,7 +18,7 @@ class _PedoCheckState extends State<PedoCheck> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
-  //The last position updated
+  //The last previous position updated
   late Position lastPos;
   //If the position is 40 meters away compared to the last position, the moving is true
   bool moving = false; 
@@ -33,7 +33,13 @@ class _PedoCheckState extends State<PedoCheck> {
   //the last total Step walked (today?) retrieved from the pedometer api
   int lastSteps = 0;
 
+  bool shouldUpdateLastSteps = true;
+
   double lastDist = 0;
+  //the last position recorded
+  late Position prePos;
+  //the totalDistance the user traveled since last update
+  double totalDistSinceLastUpdate = 0;
   
 
   final LocationSettings locationSettings =  const LocationSettings(
@@ -114,7 +120,8 @@ class _PedoCheckState extends State<PedoCheck> {
       });
     }
     else{
-      if(lastSteps==0){
+      if(shouldUpdateLastSteps){
+        shouldUpdateLastSteps = false;
         lastSteps = event.steps;
       }
       if(stepCounter == 10){
@@ -184,6 +191,7 @@ class _PedoCheckState extends State<PedoCheck> {
 
   Future<void> initPlatformState() async {
     lastPos = await _determinePosition();
+    prePos = lastPos;
 
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
     _pedestrianStatusStream
@@ -203,39 +211,66 @@ class _PedoCheckState extends State<PedoCheck> {
             }
 
             //change lat lon location distance to distance in meters
-            double dist = convertLatLonToDistance(position, lastPos);
-            print('last distance:$lastDist');
-            if((dist - lastDist)>=3 ||(dist - lastDist)<-3 ){
-              print('distance:$dist');
-              print('last distance:$lastDist');
-              dist = 0;
-              print('Update LAST POSITION');
-              lastPos = position;
-            }
-            lastDist = dist;
+              // double dist = convertLatLonToDistance(position, lastPos);
+              // print('last distance:$lastDist');
+            
+            //change lat lon location distance to distance in meters
+              double distToPre = convertLatLonToDistance(position, prePos);
+
+              prePos = position;
+
+            //if the distance between the last recorded position and the current position is bigger than 4, 
+            //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
+              print("distToPre1:$distToPre");
+              if(distToPre >= 4.0){
+                  print('distToPre2:$distToPre');
+                  totalDistSinceLastUpdate=0;
+                  distToPre = 0;
+                  print('Update LAST POSITION');
+                  lastPos = position;
+              }
+
+              totalDistSinceLastUpdate+=distToPre;
+              print("distToPre3:$distToPre");
+              print('totalDist:$totalDistSinceLastUpdate');
+
+
+            //if distance update cross bigger than 3 or -3 , we update the lastPos 
+            //to prevent that the distance away exceed 40 after several calls when not moving
+              // if((dist - lastDist)>=3 ||(dist - lastDist)<-3 ){
+              //   print('distance:$dist');
+              //   print('last distance:$lastDist');
+              //   dist = 0;
+              //   print('Update LAST POSITION');
+              //   lastPos = position;
+              // }
+              // lastDist = dist;
             
             //if counter is equals to 35, we update the lastPos 
             //to prevent that the distance away exceed 40 meters when not moving
-            // if(counter == 35){
-            //   lastPos = position;
-            //   print('UPDATE LAST POSITIOn');
-            //   counter = 1;
-            // }
-            // else{
-            //   counter++;
-            // }
+              // if(counter == 35){
+              //   lastPos = position;
+              //   print('UPDATE LAST POSITIOn');
+              //   counter = 1;
+              // }
+              // else{
+              //   counter++;
+              // }
             // print('counter:'+counter.toString());
             // print('currentLastPosition:'+lastPos.latitude.toString()+','+lastPos.longitude.toString());
             // print("currentPosition:"+position.latitude.toString()+","+position.longitude.toString());
-            print(dist);
+            // print(dist);
 
             //if distance away is greater than 40, we assume that the user is truely walking
             //then we set the moving to true and set the timer
-            if(dist >= 40){
+            //if(dist >= 40){
+            if(totalDistSinceLastUpdate>=40){
               lastDist = 0;
               lastPos = position;
+              distToPre = 0;
+              totalDistSinceLastUpdate = 0;
               //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
-              print('distance:$dist');
+              //print('distance:$dist');
 
               print('Location is updating:');
               positionTimer.cancel();
@@ -255,6 +290,9 @@ class _PedoCheckState extends State<PedoCheck> {
             }
         });
         positionStream.onError((error){
+          //When user doesnot allow location checking forever, the error will occur
+          //in this case, we should warn the user that their step won't update.
+          shouldUpdateLastSteps = true;
           print('Location Update Error: $error');
         });
     
