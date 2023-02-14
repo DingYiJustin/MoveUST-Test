@@ -216,7 +216,7 @@ class _PedoCheckState extends State<PedoCheck> {
             
             //change lat lon location distance to distance in meters
               double distToPre = convertLatLonToDistance(position, prePos);
-
+              
               prePos = position;
 
             //if the distance between the last recorded position and the current position is bigger than 4, 
@@ -224,15 +224,14 @@ class _PedoCheckState extends State<PedoCheck> {
               print("distToPre1:$distToPre");
               if(distToPre >= 4.0){
                   print('distToPre2:$distToPre');
-                  totalDistSinceLastUpdate=0;
                   distToPre = 0;
                   print('Update LAST POSITION');
                   lastPos = position;
               }
-
-              totalDistSinceLastUpdate+=distToPre;
+              double dist = convertLatLonToDistance(position, lastPos);
+              // totalDistSinceLastUpdate+=distToPre;
               print("distToPre3:$distToPre");
-              print('totalDist:$totalDistSinceLastUpdate');
+              print('totalDist:$dist');
 
 
             //if distance update cross bigger than 3 or -3 , we update the lastPos 
@@ -263,12 +262,11 @@ class _PedoCheckState extends State<PedoCheck> {
 
             //if distance away is greater than 40, we assume that the user is truely walking
             //then we set the moving to true and set the timer
-            //if(dist >= 40){
-            if(totalDistSinceLastUpdate>=40){
+            if(dist >= 40){
+            // if(totalDistSinceLastUpdate>=40){
               lastDist = 0;
               lastPos = position;
               distToPre = 0;
-              totalDistSinceLastUpdate = 0;
               //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
               //print('distance:$dist');
 
