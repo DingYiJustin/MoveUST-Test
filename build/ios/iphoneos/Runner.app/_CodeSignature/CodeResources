@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		vfQNXJPQHo+2921OSpLeRGL3HoA=
+		LJ4gKdXWZ1eM/aznjJlD+Q4mNqk=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		KvxWdaJt3nDte6X6fIE6Op3z+Qo=
+		KvToykmkdfOyuPhsw3Oza1BTRcY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		LscLvKt82QEmvF8iqOk7i118eZo=
+		ImTHfhRWV8v+4M9A14lhpzIV3Ww=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -190,7 +190,7 @@
 		</data>
 		<key>Frameworks/geolocator_apple.framework/geolocator_apple</key>
 		<data>
-		osyXEeagSZcF0bEni2mA+67G4do=
+		/aRimGVyLKBDOzNzAOdzN+7uOZk=
 		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
@@ -202,11 +202,11 @@
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		594a/YFmIH98in9xhyBD+TnRTOg=
+		ZXpXfgQSLl3TW6mJ13J1MaZWswA=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		gCVEpTB6p58FcLC5BFXVrluHc6A=
+		E5xp+f0GzfB9PPnPlXkZUSlKdOA=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		ilFxzz+X5ccAv2vC3NE6qTmvfZs=
+		KcDLwgDaMpFWB+r17AeV95PJgvw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -293,7 +293,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LcTDB3MGWtr1K/pni5Qu4P6QgV9ta0Q/MN44LERHd3c=
+			6YYTJpTsjMUlvBeTjHa19B71MgzCWj8mNgNlMXRdzsw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -307,7 +307,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pYQQ/t8IEZRcrYFtIU82v5uxv7RIGQDh2/lQtg2W7z0=
+			NzvT/I68k04rAgistHoC9270FGffro/EmPy1pBcOb5I=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -356,7 +356,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			COkMHcid14ibrwbARXy8Sp7BA0HpvtmrAHwtcQKZGAo=
+			BvzgjJsAIDxQhw9LfHR8It6e1XYe+BPR0o7l6VrMFdA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -545,7 +545,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9uLee7eVrPBwUuglcx3Tghn41GpCipyg7RjTLmpbz+8=
+			nQgnSfResRKVi5oqdpCoxIJ7P8Zi7sjKTX3oKCsu5Wg=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
@@ -566,14 +566,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tosVMroirdC+aQNh5FJKUtCbg/sfgtqWidvl6zJ5Q5E=
+			de4wG+LYVk245833w8o19paP+g0Le8LHn1viRP3LGqE=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/jY91rrMMKJO2wX3d8tk8Nd5763wp6uWN2EdexQATF4=
+			d5xH6pBHeBJmOvNoUrndvJ1FRsoWC6uD+PBL28SczS4=
 			</data>
 		</dict>
 	</dict>
