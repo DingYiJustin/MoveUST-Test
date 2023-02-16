@@ -39,7 +39,11 @@ class _PedoCheckState extends State<PedoCheck> {
   //the last position recorded
   late Position prePos;
   //the totalDistance the user traveled since last update
-  double totalDistSinceLastUpdate = 0;
+  double totalDist = 0;
+  //the totalDistance since last position (lastPos) update
+  double totalDistSinceLastUpdate = 0; 
+  //determined whether the user have moved distance recorded since last position (lastPos) update
+  bool moved = false;
   
 
   final LocationSettings locationSettings =  const LocationSettings(
@@ -186,6 +190,13 @@ class _PedoCheckState extends State<PedoCheck> {
             
             //change lat lon location distance to distance in meters
             double distToPre = convertLatLonToDistance(position, prePos);
+
+            //if the user is moving right now, add the distance from last position(prePos) to the total distance 
+            if(moving){
+              totalDist+=distToPre;
+            }
+            //calculate the total distance moved since lastPos update
+            totalDistSinceLastUpdate+=distToPre;
               
             prePos = position;
 
@@ -199,9 +210,15 @@ class _PedoCheckState extends State<PedoCheck> {
                 print("total distance before update $dist");
                 print('Update LAST POSITION');
                 lastPos = position;
+                totalDistSinceLastUpdate=0;
+                //Since the steps and totalDist still update when moving is true,
+                //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
+                if(!moving){
+                  moved = false;
+                }
             }
+
             double dist = convertLatLonToDistance(position, lastPos);
-            // totalDistSinceLastUpdate+=distToPre;
               
             print('totalDist:$dist');
 
@@ -213,6 +230,10 @@ class _PedoCheckState extends State<PedoCheck> {
               lastDist = 0;
               lastPos = position;
               distToPre = 0;
+              if(!moved){
+                totalDist+=totalDistSinceLastUpdate;
+              }
+              totalDistSinceLastUpdate = 0;
               //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
 
               print('Location is updating:');
@@ -220,6 +241,9 @@ class _PedoCheckState extends State<PedoCheck> {
               if(!moving){
                 moving = true;
               }
+              //Since during moving the totalDist is updated by disToPre, we should set the moved to true
+              moved = true;
+
               //timer to set the moving value to false after 25 seconds.
               positionTimer = Timer.periodic(Duration(seconds: 25),(timer){
                 if(moving){
@@ -281,7 +305,11 @@ class _PedoCheckState extends State<PedoCheck> {
                       ? TextStyle(fontSize: 30)
                       : TextStyle(fontSize: 20, color: Colors.red),
                 ),
-              )
+              ) ,
+              Text(
+                'Distance Walked: $totalDist',
+                style: TextStyle(fontSize: 30),
+              ),
             ],
           ),
         );
