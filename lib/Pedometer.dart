@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -28,8 +30,12 @@ class _PedoCheckState extends State<PedoCheck> {
   int stepCounter =0;
   //The timer to set the moving to false after it has been set to true
   Timer positionTimer = Timer(Duration(days: 1), (){});
+  //The timer to have a smooth update of step count
+  Timer stepTimer = Timer(Duration(days: 1),(){});
   //totalSteps moved after starting the app
   int totalSteps = 0;
+  //totalSteps presented in the screen
+  int totalStepsInScreen = 0;
   //the last total Step walked (today?) retrieved from the pedometer api
   int lastSteps = 0;
 
@@ -44,6 +50,7 @@ class _PedoCheckState extends State<PedoCheck> {
   double totalDistSinceLastUpdate = 0; 
   //determined whether the user have moved distance recorded since last position (lastPos) update
   bool moved = false;
+  
   
 
   final LocationSettings locationSettings =  const LocationSettings(
@@ -111,14 +118,31 @@ class _PedoCheckState extends State<PedoCheck> {
         //after opening the app will be recorded
     if(moving){
       int newSteps = event.steps-lastSteps;
+      stepTimer.cancel();
+
       setState(() {
         totalSteps+=newSteps;
+        // print("totalSteps:$totalSteps");
+        // print("totalStepsInScreen:$totalStepsInScreen");
+        totalStepsInScreen = totalSteps;
         lastSteps = event.steps;
         stepCounter = 0;
 
       });
+      
+      stepTimer = Timer.periodic(Duration(milliseconds:500), (timer){
+        if(_status == 'walking'){
+          setState(() {
+            // print('++');
+            ++totalStepsInScreen;
+
+          });
+        }
+      });
+
     }
     else{
+      stepTimer.cancel();
       if(shouldUpdateLastSteps){
         shouldUpdateLastSteps = false;
         lastSteps = event.steps;
@@ -180,7 +204,7 @@ class _PedoCheckState extends State<PedoCheck> {
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
     
-    //positionStream to determine whether the user is moving
+    // positionStream to determine whether the user is moving
     StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
         (Position? position) {
             if(position == null){
@@ -278,7 +302,7 @@ class _PedoCheckState extends State<PedoCheck> {
                 style: TextStyle(fontSize: 30),
               ),
               Text(
-                totalSteps.toString(),
+                totalStepsInScreen.toString(),
                 style: TextStyle(fontSize: 60),
               ),
               Divider(
