@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		+pjHq/9eABvwKDRUZuHrUNT154I=
+		LPlyrpkoWxObY7D0Ev38IHwQFjE=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		ZKlIDG6xkjC9xFYj0QIUtp560/o=
+		0peQZUNZO5ecOZatwwIUVqNw/ic=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		J87tXaDw8Ol9MJThqqTHG3UQdv0=
+		XSyUZ27JTzSJ8p0yMLZy8Fgz8Vs=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		JiLdfJ14JLubg3guv9GdWjGRR3A=
+		2LmNfjFA4gdAnTALRh68BN3o9ng=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -190,7 +190,31 @@
 		</data>
 		<key>Frameworks/geolocator_apple.framework/geolocator_apple</key>
 		<data>
-		1NbSzE03GGkC67EUSbZeunCoQJQ=
+		QQbGbHwBkDk73ykfi9Nzn5KdOmc=
+		</data>
+		<key>Frameworks/location.framework/Info.plist</key>
+		<data>
+		y5H/k5dweJuDIUchb8h5ySs2XVA=
+		</data>
+		<key>Frameworks/location.framework/_CodeSignature/CodeResources</key>
+		<data>
+		YgW7+W6SSOFOVM4W6GtA7I/V7Cw=
+		</data>
+		<key>Frameworks/location.framework/location</key>
+		<data>
+		aBpCrtPqbY8dwPDNBLKCcLzJ6N0=
+		</data>
+		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
+		<data>
+		nLakN0UsO7iW3aIADuIRbl19pHo=
+		</data>
+		<key>Frameworks/path_provider_foundation.framework/_CodeSignature/CodeResources</key>
+		<data>
+		R5RZQKz6gPrhE3iXgbTPoAU9LS8=
+		</data>
+		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
+		<data>
+		fsMvy9NIXHMGKEE85O34KlsCtAg=
 		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
@@ -202,11 +226,35 @@
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		du2uwRUXFIYJRHZ7VM+OmpQ6SD0=
+		2ogS9od1j25dh+xJtFvb9T/nWjE=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
+		<data>
+		xjX/l88fTaXtyjc/62WRcObpVPA=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources</key>
+		<data>
+		N3D5hvClvfvXJshqkEiM1kGXr38=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
+		<data>
+		8sWYaTMaJNamMMJe4cte9Tg9AUM=
+		</data>
+		<key>Frameworks/workmanager.framework/Info.plist</key>
+		<data>
+		lQXGO1K/KIMVYzJVhrsvtVH22+Y=
+		</data>
+		<key>Frameworks/workmanager.framework/_CodeSignature/CodeResources</key>
+		<data>
+		X/zFUHnklktaNTRnbYbAtZ3U1SY=
+		</data>
+		<key>Frameworks/workmanager.framework/workmanager</key>
+		<data>
+		WyRhWB+pW/XpxmKRhliDkpwZT0s=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		gCVEpTB6p58FcLC5BFXVrluHc6A=
+		1cchN/nDEwrkri0QanyEgMRDKMM=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -293,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ur0eqP7YWQvCFJ5MPqq2oFMG1g9mS806rDJp1TJh0Uw=
+			ofjzGCunEIXSoYKoFzCy840oTVBh84DzjZKiY61VIfE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -307,7 +355,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JZCTlV++o7BE/p41wqVF78La19Sp24x3pnMBivxckp4=
+			IDOPsAOzVA9wPI0QlmkvaFwfk0XABhACeR9LZle54ow=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -328,7 +376,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1rcth6zTPfTpbuSr1ColZiLi0VnI9mLm1eeA70vsSAo=
+			UZ0aTcKnzY3cI42SAfsqP+yWOP+xmqqgFdYukT4wRqk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -356,7 +404,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			L5JtIdptI08H1mFErL0dIXBGBOd+Eqb6ih0nqZDl4XY=
+			nwKfsrZwfL6Wj7iWHEv+NsDMeqAxdrRdy3rzhJWmpeA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -545,7 +593,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JjhyoJ9Hr4OemNJqCI+lqSUA/oeT4ngphSFRiz4yOnM=
+			Bj9xnqmtp64Rw3fPDqBMdlnm9F8mm99W/0TtG0N0ZqU=
+			</data>
+		</dict>
+		<key>Frameworks/location.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bjsYvFyIY2CoDYQKt4HOObwRA8nf6btyHrkWvihXIos=
+			</data>
+		</dict>
+		<key>Frameworks/location.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RQ1pja6VdP12PhmIO0v5FMQBfMYse0lG6671tjLj6D0=
+			</data>
+		</dict>
+		<key>Frameworks/location.framework/location</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4ewYH5ihmj8o4KfJF1XP2I0IVbjckPse11APaQ3n8Pc=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			l1Ad58ZAbtkh/7cyVM/1pYo8LwwAKEKhWq22IZq8OCM=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			O5n/vqBjmOoyYIL2tsdBfoOxTRY/OP0/padezshgOjM=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Y0nFAE8wfB279JLX8fthJInUryRZhOYgZZuuoawkdic=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
@@ -566,7 +656,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Hv0vEK57A55RSUlxtpuX45SMvvw48qI3rTiMdi8x128=
+			twGorlYwAq1F94kaMFozuJ16hVQileRvoLhFkxPW9b0=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			esyP27r+yr6m+sfLkg7k0CJhNvjWjgFekHXoV5kkEb4=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			O4xWBu1f/FfzeJ9A6sncTpyEm3lDyz4yaQDgEC9/FrU=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			AenBVEhH/ykNzZE5ScHd+fy2w1stW0/88jPL7Wu0Uc4=
+			</data>
+		</dict>
+		<key>Frameworks/workmanager.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8qbodqK5ykIKxd4hDNgpdwM/SA+EBtbBLqxIXM37pD8=
+			</data>
+		</dict>
+		<key>Frameworks/workmanager.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HvyxXpGV/fPuP0GeK9NQcul/fJGS7riDedN/26ZspvM=
+			</data>
+		</dict>
+		<key>Frameworks/workmanager.framework/workmanager</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			s2AbFJCkbgkcehGVVJclbqHJbhTt1yz2SGCI5qJetf8=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
