@@ -23,7 +23,7 @@ class _PedoCheckState extends State<PedoCheck> {
   String _status = '?', _steps = '?';
   //The last previous position updated
   late LocationData lastPos;
-  //If the position is 40 meters away compared to the last position, the moving is true
+  //If the position is 30 meters away compared to the last position, the moving is true
   bool moving = false; 
   //The counter to check whether the position should be update to lastPos
   int counter = 0;
@@ -42,7 +42,6 @@ class _PedoCheckState extends State<PedoCheck> {
 
   bool shouldUpdateLastSteps = true;
 
-  double lastDist = 0;
   //the last position recorded
   late LocationData prePos;
   //the totalDistance the user traveled since last update
@@ -53,18 +52,6 @@ class _PedoCheckState extends State<PedoCheck> {
   bool moved = false;
 
   late Location location;
-  
-  
-  
-
-  // final LocationSettings locationSettings =  const LocationSettings(
-  //     accuracy: LocationAccuracy.bestForNavigation,
-  //     distanceFilter: 0,
-  //   );
-  /// Determine the current position of the device.
-  ///
-  /// When the location services are not enabled or permissions
-  /// are denied the `Future` will return an error.
   
 
   Future<LocationData> getPermission() async{
@@ -248,7 +235,6 @@ class _PedoCheckState extends State<PedoCheck> {
       //then we set the moving to true and set the timer
       //already tested 20 can be panetrated
       if(dist >= 30){
-        lastDist = 0;
         lastPos = position;
         distToPre = 0;
         if(!moved){
@@ -258,7 +244,6 @@ class _PedoCheckState extends State<PedoCheck> {
           });
         }
         totalDistSinceLastUpdate = 0;
-        //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
 
         print('Location is updating:');
         positionTimer.cancel();
@@ -281,102 +266,16 @@ class _PedoCheckState extends State<PedoCheck> {
           }
         });
       }
-    });
+    }).onError((error){
+          //When user doesnot "allow location checking forever", the error will occur
+          //in this case, we should warn the user that their step won't update.
+          print('Location Update Error: $error');
+        }
+    );
     
     
     location.enableBackgroundMode(enable: true);
 
-    
-    // positionStream to determine whether the user is moving
-    // StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-    //     (Position? position) {
-    //         if(position == null){
-    //           print('position is null');
-    //           return;
-    //         }
-            
-    //         //change lat lon location distance to distance in meters
-    //         double distToPre = convertLatLonToDistance(position, prePos);
-
-    //         //if the user is moving right now, add the distance from last position(prePos) to the total distance 
-    //         if(moving){
-    //           if(_status == 'walking'){
-    //             setState(() {
-    //               totalDist+=distToPre;
-    //             });
-    //           }
-    //         }
-    //         //calculate the total distance moved since lastPos update
-    //         totalDistSinceLastUpdate+=distToPre;
-              
-
-    //         //if the distance between the last recorded position and the current position is bigger than 4, 
-    //         //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
-    //         print("distToPre1:$distToPre");
-    //         if(distToPre >= 5.0 && !moving){
-    //             distToPre = 0;
-    //             double dist = convertLatLonToDistance(position, lastPos);
-    //             print("total distance before update $dist");
-    //             print('Update LAST POSITION');
-    //             lastPos = position;
-    //             totalDistSinceLastUpdate=0;
-    //             //Since the steps and totalDist still update when moving is true,
-    //             //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
-    //             moved = false;
-    //         }
-    //         prePos = position;
-
-
-    //         double dist = convertLatLonToDistance(position, lastPos);
-              
-    //         print('totalDist:$dist');
-
-
-    //         //if distance away is greater than 30, we assume that the user is truely walking
-    //         //then we set the moving to true and set the timer
-    //         //already tested 20 can be panetrated
-    //         if(dist >= 30){
-    //           lastDist = 0;
-    //           lastPos = position;
-    //           distToPre = 0;
-    //           if(!moved){
-    //             setState(() {
-    //               totalDist+=totalDistSinceLastUpdate;
-    //               print('UPATE WITH TOTALDISTSINCELASTUPDATE');
-    //             });
-    //           }
-    //           totalDistSinceLastUpdate = 0;
-    //           //API检测distacnce的有问题，使用ios bestnavigator最好检测精度在十以上
-
-    //           print('Location is updating:');
-    //           positionTimer.cancel();
-    //           if(!moving){
-    //             moving = true;
-    //           }
-    //           //Since during moving the totalDist is updated by disToPre, we should set the moved to true
-    //           moved = true;
-
-    //           //timer to set the moving value to false after 25 seconds.
-    //           positionTimer = Timer.periodic(Duration(seconds: 25),(timer){
-    //             if(moving){
-    //               moving=false;
-    //               timer.cancel();
-    //               totalDistSinceLastUpdate=0;
-    //               moved = false;
-    //             }
-    //             else{
-    //               timer.cancel();
-    //             }
-    //           });
-    //           print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
-    //         }
-    //     });
-    //     positionStream.onError((error){
-    //       //When user doesnot allow location checking forever, the error will occur
-    //       //in this case, we should warn the user that their step won't update.
-    //       shouldUpdateLastSteps = true;
-    //       print('Location Update Error: $error');
-    //     });
     
     if (!mounted) return;
   }

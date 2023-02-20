@@ -32,7 +32,6 @@ dependencies:
   flutter:
     sdk: flutter
   pedometer: ^3.0.0
-  geolocator: ^9.0.2
   workmanager: ^0.5.1
   location: ^4.2.0
 
