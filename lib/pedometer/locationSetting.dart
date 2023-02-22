@@ -5,23 +5,11 @@ import 'package:location/location.dart';
 import 'dart:math' show cos, sqrt, asin;
 
 
-class locationSettings extends StatefulWidget {
-  const locationSettings({super.key});
+class locationSettings{
 
-  @override
-  State<locationSettings> createState() => _locationSettingsState();
-}
+  locationSettings({required this.setParentState, required this.status});
 
-class _locationSettingsState extends State<locationSettings> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-
-
-class locationSetting extends state{
+  late Function setParentState;
   //The last previous position updated
   late LocationData lastPos;
   //the last position recorded
@@ -36,10 +24,21 @@ class locationSetting extends state{
   bool moving = false; 
 
   late Location location;
-  
+
+  late String status;
+
   Timer positionTimer = Timer(Duration(days: 1), (){});
 
-    Future<LocationData> getPermission() async{
+  Future<void> initalSettings() async {
+    lastPos = await _getPermission();
+    prePos = lastPos;
+    print('init prePos');
+    location.enableBackgroundMode(enable: true);
+
+  }
+  
+
+    Future<LocationData> _getPermission() async{
     location = new Location();
 
     bool _serviceEnabled;
@@ -89,8 +88,8 @@ class locationSetting extends state{
 
       //if the user is moving right now, add the distance from last position(prePos) to the total distance 
       if(moving){
-        if(_status == 'walking'){
-          setState(() {
+        if(status == 'walking'){
+          setParentState(() {
             totalDist+=distToPre;
           });
         }
@@ -102,17 +101,18 @@ class locationSetting extends state{
       //if the distance between the last recorded position and the current position is bigger than 4, 
       //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
       print("distToPre1:$distToPre");
-      if(distToPre >= 5.0 && !moving){
-          distToPre = 0;
-          double dist = convertLatLonToDistance(position, lastPos);
-          print("total distance before update $dist");
-          print('Update LAST POSITION');
-          lastPos = position;
-          totalDistSinceLastUpdate=0;
-          //Since the steps and totalDist still update when moving is true,
-          //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
-          moved = false;
-      }
+      // if(distToPre >= 5.0 && !moving){
+      //     distToPre = 0;
+      //     double dist = convertLatLonToDistance(position, lastPos);
+      //     print("total distance before update $dist");
+      //     print('Update LAST POSITION');
+      //     lastPos = position;
+      //     totalDistSinceLastUpdate=0;
+      //     //Since the steps and totalDist still update when moving is true,
+      //     //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
+      //     moved = false;
+      // }
+
       prePos = position;
 
 
@@ -128,9 +128,10 @@ class locationSetting extends state{
         lastPos = position;
         distToPre = 0;
         if(!moved){
-          setState(() {
+          setParentState(() {
             totalDist+=totalDistSinceLastUpdate;
-            print('UPATE WITH TOTALDISTSINCELASTUPDATE');
+            print("UPATE WITH TOTALDISTSINCELASTUPDATE: $totalDist");
+
           });
         }
         totalDistSinceLastUpdate = 0;

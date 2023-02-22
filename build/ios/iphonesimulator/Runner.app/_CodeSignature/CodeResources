@@ -18,11 +18,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		F0wiCX2yjIEQJj0CI2k67DGqJrk=
+		qROg0O2B/eICJK19SebwClB+mcY=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		DF6Z5hXAr2RFi4WQIicUUq8AuoU=
+		28xWMBQ91UzszfdXY91SqhC7ecg=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		UWx86d22lEJhoD6BOMOL4F/NX00=
+		P+HwdBurMylfT9gcYEla72OFNuU=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		AFerOR+1xXSR5yTDbgKWcDgsF4k=
+		HHWt59Sj6dMYG7ftMYbhE2wFYH4=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		uqEhamo1Agk5ZuKUYY6TiUkkF4g=
+		WRTK7wSFBTuvYj+ze0NQDlOpfZE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		lIliUV5MgaKhp2Vbab0wZIyxXwQ=
+		+6mX1RF8Ag9BEz1E45btcBHU3z8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>Frameworks/Flutter.framework/Flutter</key>
 		<data>
-		2FLfyzN6ioBGp+Z6N3PuuxSYM7c=
+		7KXOpJuxDOLxmbfg90V5CS5UEYI=
 		</data>
 		<key>Frameworks/Flutter.framework/Headers/Flutter.h</key>
 		<data>
@@ -180,21 +180,69 @@
 		<data>
 		q5acp6rOkQ+ckG1e10c6ecrMr8U=
 		</data>
+		<key>Frameworks/location.framework/Info.plist</key>
+		<data>
+		qOQkfNwhNPpuQmyAAMCEi9qmjWE=
+		</data>
+		<key>Frameworks/location.framework/_CodeSignature/CodeResources</key>
+		<data>
+		7rNegtZzNU8kjsROzo4Vh1r0rWs=
+		</data>
+		<key>Frameworks/location.framework/location</key>
+		<data>
+		gFEhhPwKZVt6sphBlj5Qr4/S4wo=
+		</data>
+		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
+		<data>
+		97S1j7OVrKEjE75z37dmRQtsuSU=
+		</data>
+		<key>Frameworks/path_provider_foundation.framework/_CodeSignature/CodeResources</key>
+		<data>
+		S9ZAMFO2+jemNnF+GrFxduuFjC8=
+		</data>
+		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
+		<data>
+		43yA8+TFihJGwBpUmxt7flHa+xg=
+		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
-		dBKZsXCB5uWZ69EPkdG8r8SHRWk=
+		9GRcfNghczH38hpEIbNWjQvkFyQ=
 		</data>
 		<key>Frameworks/pedometer.framework/_CodeSignature/CodeResources</key>
 		<data>
-		k8pNvgqY5uW5tUN68Uo/VCjkZ/Y=
+		Fjv0hFXI9I1E7ljLNJzcplluWa4=
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		F1p49Oa1wxorm/Be50N1+9gxAQg=
+		EXSoN9m8mRU1fMTmhImOsAxUB2s=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
+		<data>
+		5sOPuYRppLLfHWEUc/RUfVB/f74=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources</key>
+		<data>
+		Z0cbPTNXPSUt9jRu82L93jR4H5k=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
+		<data>
+		yedn0+pUjei9eScIy/wzyQq44Fc=
+		</data>
+		<key>Frameworks/workmanager.framework/Info.plist</key>
+		<data>
+		1B7T8mS0fnb0snnZA6qpAaKX4Js=
+		</data>
+		<key>Frameworks/workmanager.framework/_CodeSignature/CodeResources</key>
+		<data>
+		34YCFv953IWN0u1oU0bMstYbIOM=
+		</data>
+		<key>Frameworks/workmanager.framework/workmanager</key>
+		<data>
+		qTLNtgpYf+mvBLDK4tWz+6Wpjek=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		D5/vV+/9cw9xbTH+2OjLLmqZz+k=
+		maVE3FbcVZZEBlzbXKGeTdaE8mw=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -228,14 +276,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2J4RxKjYQnPzbpMC7zud3ks2NBom0uYJo7pV6eceQ+c=
+			PEmcH74Ox7fLd/Lq7/lFLkW3XDIn1IZIysgftW5kJYM=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KfuR9UyQfWC8AwcDiHPO4EsTVsy/Oi81vFuFr3KL8jQ=
+			by6WshwXWgbEYiAy2bvh0UtjSVa3EwySkNFc1FazGdY=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
@@ -277,7 +325,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			S0gObpyzEN5idei1HX6WQ54bro9Xpuh8vPPpQyW946I=
+			sg1ObL+VZUkCn6nw0GnVyyPNjytoyOg5wIiakawotRI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -291,7 +339,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fT1MnCEZwDefRwsWYcPY2nfPSWoYsId1Xbc+UJ2emPo=
+			c1Kr9TTbULy/9/z/V4wMrb3RA4bDtwxPHDo3TOpcuJA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -312,7 +360,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/ZbNPtcATjR5Wmn62AbzYudVSy0aA+SN5hBxjk5970E=
+			1UbKxeyBzogSNSIhFRqhRfHn34+vp7WroaQuzpKo1/g=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -340,7 +388,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			r0F5adLb/azdZHpw2oqAql0BUuHpbI2cAR+ZvLPfMK0=
+			TSwp2OYE0w6wt5Py8Wu4goU97BpgJ619in81VMPh3GY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -368,7 +416,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Wx09SzWYg5pWcjOp1Twors4j+ZPzpwp7oKOl+qKRLkE=
+			1rS/MA+659aJqUBJpRHZlQPRK1FbJ9Eek6LXLin6XJw=
 			</data>
 		</dict>
 		<key>Frameworks/Flutter.framework/Headers/Flutter.h</key>
@@ -511,25 +559,109 @@
 			sA+D9pONLsc1rI+XDHefj/KAY7kac9Ait6lUu4UjHDg=
 			</data>
 		</dict>
+		<key>Frameworks/location.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Y0J3q3oYzNJi1u4g+/RS+gdd8JrM6xh0WIuHQqm1nZY=
+			</data>
+		</dict>
+		<key>Frameworks/location.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vASciDic+TjRFZRDzugDQAkYBGd63H/+p2ued8Bn/rA=
+			</data>
+		</dict>
+		<key>Frameworks/location.framework/location</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BcMCXXWuBMVj7b0ka5Ca+IVw7ibCNSYIJ8jubhvKer4=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mWlbps6WLfblUJIZvB3KYUnmH1ntQ4v5g8Hyd6NQjNY=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XPFpZa3EPSc1N+X4DdTzkTQUt8VyFzSn0zUnvrDOeOo=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WaZG8b5qG1Usb9CXe9+j8frnrX/wBgFF4XRxKjIEK68=
+			</data>
+		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GbPNjNgHEqrWzAtyu77XTOcjm2wmWSFXmOijBrEekto=
+			tnFktm4dc6Z0yPFN5bAEmCPfmPJ4EdyIILMHAnxXJcs=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			11pnbET+FHdMolRB6dCLoD41c1Dy9U6FT5hzstk0vzw=
+			gHLBfTAt/EBjo3pmD0Oza7yl4R7kXtWW0+GIUtsh6ho=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			p60EZuZDFb13mOz3w3Hu/QcMcyvtbxJdEaYyUgLYS9c=
+			ykEYHPiI0tr3gRijAjZm2wa1mhmpMsA2OMxGbfRcZns=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			46ffhKeMPd09BY2PsCDrh/iozOUUwlsRgHcOsZ6m78g=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			K+PDUj8bf3ooa1z/cP5cbnEz/Ow8qtvN4cmXOsnJscQ=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RCKOLGL5ja5SVdkU3WhKcppjlLITVucxf/mZSf+pQs4=
+			</data>
+		</dict>
+		<key>Frameworks/workmanager.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			38CYCpYvQ+i7PBbErGR4QPypGzhRGrr7k2kCGLQN7BI=
+			</data>
+		</dict>
+		<key>Frameworks/workmanager.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FPpeUBq+EGAydrjxj8syX9Wf9q16qQqzhcxbJPe8EcI=
+			</data>
+		</dict>
+		<key>Frameworks/workmanager.framework/workmanager</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bUVKZcrCtLEyu5o9M0fxAJd2ZrPcrlBXVfGX7fwAECI=
 			</data>
 		</dict>
 	</dict>

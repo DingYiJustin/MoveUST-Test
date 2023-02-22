@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		LPlyrpkoWxObY7D0Ev38IHwQFjE=
+		QPXdJ38L9NBNsCvVpDv6PGOkmsk=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		0peQZUNZO5ecOZatwwIUVqNw/ic=
+		Oe24L5EpmyzCGot38Yvu8sXnwPg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		XSyUZ27JTzSJ8p0yMLZy8Fgz8Vs=
+		WRTK7wSFBTuvYj+ze0NQDlOpfZE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		2LmNfjFA4gdAnTALRh68BN3o9ng=
+		sNRyz70f1RF9ggBspfJ8gzthVjs=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -202,7 +202,7 @@
 		</data>
 		<key>Frameworks/location.framework/location</key>
 		<data>
-		aBpCrtPqbY8dwPDNBLKCcLzJ6N0=
+		bxFdFOJ+Ll13zs7oFLhvMMpUuS0=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
 		<data>
-		fsMvy9NIXHMGKEE85O34KlsCtAg=
+		5iJmlRdQelptHyKFc3Z8u1PCmIs=
 		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
@@ -226,7 +226,7 @@
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		2ogS9od1j25dh+xJtFvb9T/nWjE=
+		AhJdieiChPyp/IYjXTkHKe9noOM=
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
 		<data>
@@ -238,7 +238,7 @@
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
 		<data>
-		8sWYaTMaJNamMMJe4cte9Tg9AUM=
+		4vYDdLyX3IYAXb38MvEUSK8cXVw=
 		</data>
 		<key>Frameworks/workmanager.framework/Info.plist</key>
 		<data>
@@ -250,7 +250,7 @@
 		</data>
 		<key>Frameworks/workmanager.framework/workmanager</key>
 		<data>
-		WyRhWB+pW/XpxmKRhliDkpwZT0s=
+		Uj3ZXKWQMoe02XGXJT21ZtK2aoQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -341,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ofjzGCunEIXSoYKoFzCy840oTVBh84DzjZKiY61VIfE=
+			r2L+OiuQr2XtbOIHms9+E1+pQG3fZXRv19Ta/K8BlJw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -355,7 +355,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IDOPsAOzVA9wPI0QlmkvaFwfk0XABhACeR9LZle54ow=
+			VfRpOrx3U28MxQVr60Z8Ii4gpQL/T+ia6z9FXELQD2g=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -376,7 +376,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UZ0aTcKnzY3cI42SAfsqP+yWOP+xmqqgFdYukT4wRqk=
+			1UbKxeyBzogSNSIhFRqhRfHn34+vp7WroaQuzpKo1/g=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -404,7 +404,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nwKfsrZwfL6Wj7iWHEv+NsDMeqAxdrRdy3rzhJWmpeA=
+			sS7zZAc1O8mYM9gxW/SaV8XGj/O3zQhZtP6csc5Ym6o=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -614,7 +614,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4ewYH5ihmj8o4KfJF1XP2I0IVbjckPse11APaQ3n8Pc=
+			AOAu2KF46sE9I56uJKMZsO6LDdREx40x7xS0YMC8Rjs=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
@@ -635,7 +635,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Y0nFAE8wfB279JLX8fthJInUryRZhOYgZZuuoawkdic=
+			FOsFpArGIgqIDpCAMSxZS5vjoXpdpEnKcRGvxPDnQII=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
@@ -656,7 +656,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			twGorlYwAq1F94kaMFozuJ16hVQileRvoLhFkxPW9b0=
+			7jsqk4n0yVQIoizjfQJ+23YrFc5jLO8EYvfyooSeP+0=
 			</data>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
@@ -677,7 +677,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AenBVEhH/ykNzZE5ScHd+fy2w1stW0/88jPL7Wu0Uc4=
+			p1fIxWPnFAYvbJz87vRCDlLAEwYtdneqrgNRdwZ4+4E=
 			</data>
 		</dict>
 		<key>Frameworks/workmanager.framework/Info.plist</key>
@@ -698,7 +698,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			s2AbFJCkbgkcehGVVJclbqHJbhTt1yz2SGCI5qJetf8=
+			f+kow8bsd9cu7ygjh/GiZlwp3I2oVKD+Ht8PYVfZSOs=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
