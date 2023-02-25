@@ -134,7 +134,7 @@ class _PedoCheckState extends State<PedoCheck> {
 
   Future<void> initPlatformState() async {
     loc = locationSettings(setParentState: setState, status: _status);
-    await loc.initalSettings();
+    await loc.initalSettings(context);
 
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
     statusSubscript = _pedestrianStatusStream

@@ -1,8 +1,11 @@
 import 'dart:async';
+// import 'dart:js';
+// import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'dart:math' show cos, sqrt, asin;
+import 'package:permission_handler/permission_handler.dart' as pm;
 
 
 class locationSettings{
@@ -29,40 +32,120 @@ class locationSettings{
 
   Timer positionTimer = Timer(Duration(days: 1), (){});
 
-  Future<void> initalSettings() async {
-    lastPos = await _getPermission();
+  Future<void> initalSettings(BuildContext context) async {
+    lastPos = await _getPermission(context);
     prePos = lastPos;
     print('init prePos');
     location.enableBackgroundMode(enable: true);
 
   }
   
-
-    Future<LocationData> _getPermission() async{
+  Future<LocationData> _getPermission(BuildContext context) async{
     location = new Location();
-
     bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+    bool _serviceAlwaysEnabled;
+    pm.PermissionStatus _permissionGranted;
     LocationData _locationData;
 
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return Future.error("Location services are disabled");
+    _serviceAlwaysEnabled =await pm.Permission.locationAlways.isGranted;
+    if(!_serviceAlwaysEnabled){
+      _serviceEnabled = await pm.Permission.locationWhenInUse.isGranted;
+      if(!_serviceEnabled){
+        _serviceEnabled = await pm.Permission.locationWhenInUse.request().isGranted;
       }
-    }
 
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return Future.error('Location permissions are denied');
+      if(_serviceEnabled){
+        _serviceAlwaysEnabled = await pm.Permission.locationAlways.request().isGranted;
+        if(!_serviceAlwaysEnabled){
+          print('no alway');
+          // The user opted to never again see the permission request dialog for this
+          // app. The only way to change the permission's status now is to let the
+          // user manually enable it in the system settings.
+          showDialog(
+            barrierDismissible:false ,
+            context: context, builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2, vertical: MediaQuery.of(context).size.height*0.3),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+                ),
+                  child:Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Container(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.02), child: Text('The app needs permenant location permission to validate your steps in background',textAlign: TextAlign.center,),),
+                    ElevatedButton(onPressed: (){
+                      pm.openAppSettings();
+                      Navigator.pop(context);
+
+                    }, child: Text('Set Permission') )
+                  ],)
+                )
+                
+            );
+          },);
+
+          // return Future.error('Location permissions are denied');
+
+        }
+      }
+      else{
+        print('no in use');
+        showDialog(
+            barrierDismissible:false ,
+            context: context, builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2, vertical: MediaQuery.of(context).size.height*0.3),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+                ),
+                  child:Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Container(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.02), child: Text('The app needs permenant location permission to validate your steps in background',textAlign: TextAlign.center,),),
+                    ElevatedButton(onPressed: (){
+                      pm.openAppSettings();
+                      Navigator.pop(context);
+
+                    }, child: Text('Set Permission') )
+                  ],)
+                )
+                
+            );
+          },);
+        // return Future.error('Location permissions are denied');
       }
     }
 
     return _locationData = await location.getLocation();
+    
   }
+
+
+  //   Future<LocationData> _getPermission() async{
+  //   location = new Location();
+
+  //   bool _serviceEnabled;
+  //   PermissionStatus _permissionGranted;
+  //   LocationData _locationData;
+
+  //   _serviceEnabled = await location.serviceEnabled();
+  //   if (!_serviceEnabled) {
+  //     _serviceEnabled = await location.requestService();
+  //     if (!_serviceEnabled) {
+  //       return Future.error("Location services are disabled");
+  //     }
+  //   }
+
+  //   _permissionGranted = await location.hasPermission();
+  //   if (_permissionGranted == PermissionStatus.denied) {
+  //     _permissionGranted = await location.requestPermission();
+  //     if (_permissionGranted != PermissionStatus.granted) {
+  //       return Future.error('Location permissions are denied');
+  //     }
+  //   }
+
+  //   return _locationData = await location.getLocation();
+  // }
 
   // calculate the distance between to lat lon location
   double convertLatLonToDistance(LocationData position, LocationData lastPos){
