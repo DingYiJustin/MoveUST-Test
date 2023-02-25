@@ -10,10 +10,10 @@ class PedoCheck extends StatefulWidget {
   const PedoCheck({super.key});
 
   @override
-  State<PedoCheck> createState() => _PedoCheckState();
+  State<PedoCheck> createState() => PedoCheckState();
 }
 
-class _PedoCheckState extends State<PedoCheck> {
+class PedoCheckState extends State<PedoCheck> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
@@ -34,6 +34,7 @@ class _PedoCheckState extends State<PedoCheck> {
   bool shouldUpdateLastSteps = true;
 
   late locationSettings loc;
+  locationSettings get getLoc => loc; //getter of loc for testing
 
   //check if it is the first time entering the app today? if yes, init the settings when starting
   bool firstEnter = true;
@@ -194,7 +195,92 @@ class _PedoCheckState extends State<PedoCheck> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    stepTimer.cancel();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+          //build while testing
+  //         return MaterialApp(home:Center(
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: <Widget>[
+  //             Text(
+  //               'Steps taken:',
+  //               style: TextStyle(fontSize: 30),
+  //             ),
+  //             Text(
+  //               totalStepsInScreen.toString(),
+  //               style: TextStyle(fontSize: 60),
+  //             ),
+  //             Divider(
+  //               height: 100,
+  //               thickness: 0,
+  //               color: Colors.white,
+  //             ),
+  //             Text(
+  //               'Pedestrian status:',
+  //               style: TextStyle(fontSize: 30),
+  //             ),
+  //             Icon(
+  //               _status == 'walking'
+  //                   ? Icons.directions_walk
+  //                   : _status == 'stopped'
+  //                       ? Icons.accessibility_new
+  //                       : Icons.error,
+  //               size: 100,
+  //             ),
+  //             Center(
+  //               child: Text(
+  //                 _status,
+  //                 style: _status == 'walking' || _status == 'stopped'
+  //                     ? TextStyle(fontSize: 30)
+  //                     : TextStyle(fontSize: 20, color: Colors.red),
+  //               ),
+  //             ) ,
+  //             Center(
+  //               child: Text(
+  //                 'Distance Walked: ${loc.totalDist}',
+  //                 style: TextStyle(fontSize: 30),
+  //               ),
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //               children: [
+  //                 ElevatedButton(onPressed: (){
+  //                   print('START');
+  //                   startListening();
+  //                 }, child: Text('Start', style: TextStyle(fontSize: 20),)),
+  //                 ElevatedButton(onPressed: (){
+  //                     print("STOP");
+  //                     if(started){
+  //                       statusSubscript.pause();
+  //                       stepSubscript.cancel();
+  //                       locationSubscript.cancel();
+  //                       setState(() {
+  //                         if(_status == 'walking'){
+  //                           _status = 'stopped';
+  //                           switchStatus = true;
+  //                         }
+  //                         shouldUpdateLastSteps = true;
+  //                         started = false;
+
+  //                       });
+  //                     }
+  //                 }, child: Text('Stop', style: TextStyle(fontSize: 20),))
+
+  //               ],
+  //             ),
+              
+  //           ],
+  //         ),
+  //       ));
+  // }
     return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
