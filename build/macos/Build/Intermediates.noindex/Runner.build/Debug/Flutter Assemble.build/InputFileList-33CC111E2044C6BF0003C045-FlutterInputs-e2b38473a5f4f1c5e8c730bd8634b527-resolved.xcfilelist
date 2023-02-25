@@ -1,5 +1,7 @@
 /Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/fonts/iconfont.ttf
+/Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/lib/home.dart
 /Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/lib/main.dart
+/Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/lib/pedometer/Pedometer.dart
 /Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/pubspec.yaml
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.9.0/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/LICENSE
@@ -73,44 +75,16 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.4/lib/src/interface/link.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.4/lib/src/io.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator-9.0.2/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-4.1.7/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-4.1.7/lib/geolocator_android.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-4.1.7/lib/src/geolocator_android.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-4.1.7/lib/src/types/android_settings.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_android-4.1.7/lib/src/types/foreground_settings.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_apple-2.2.5/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_apple-2.2.5/lib/geolocator_apple.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_apple-2.2.5/lib/src/geolocator_apple.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_apple-2.2.5/lib/src/types/activity_type.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_apple-2.2.5/lib/src/types/apple_settings.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/geolocator_platform_interface.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/enums/enums.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/enums/location_accuracy.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/enums/location_accuracy_status.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/enums/location_permission.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/enums/location_service.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/activity_missing_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/already_subscribed_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/errors.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/invalid_permission_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/location_service_disabled_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/permission_definitions_not_found_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/permission_denied_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/permission_request_in_progress_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/errors/position_update_exception.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/extensions/extensions.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/extensions/integer_extensions.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/geolocator_platform_interface.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/implementations/method_channel_geolocator.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/models/location_settings.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/models/models.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-4.0.7/lib/src/models/position.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_web-2.1.6/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_windows-0.1.1/LICENSE
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.2/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.4/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/lints-2.0.1/LICENSE
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location-4.4.0/LICENSE
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location-4.4.0/lib/location.dart
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location_platform_interface-2.3.0/LICENSE
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location_platform_interface-2.3.0/lib/location_platform_interface.dart
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location_platform_interface-2.3.0/lib/src/method_channel_location.dart
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location_platform_interface-2.3.0/lib/src/types.dart
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/location_web-3.1.1/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.12/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/material_color_utilities-0.1.5/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/material_color_utilities-0.1.5/lib/blend/blend.dart
@@ -150,7 +124,6 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.2/lib/src/style/windows.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.2/lib/src/utils.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.12/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.12/lib/path_provider.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22/lib/messages.g.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22/lib/path_provider_android.dart
@@ -171,6 +144,7 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.1.3/lib/src/folders.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.1.3/lib/src/path_provider_windows_real.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/pedometer-3.0.0/LICENSE
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/pedometer-3.0.0/lib/pedometer.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0/lib/platform.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0/lib/src/interface/local_platform.dart
@@ -186,7 +160,6 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.4/lib/src/interface/process_manager.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.4/lib/src/interface/process_wrapper.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.17/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.17/lib/shared_preferences.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.15/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.15/lib/shared_preferences_android.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_foundation-2.1.3/LICENSE
@@ -206,31 +179,8 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.1/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.1/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.4.12/LICENSE
+/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.1/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/aabb2.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/aabb3.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/colors.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/constants.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/error_helpers.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/frustum.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/intersection_result.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/matrix2.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/matrix3.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/matrix4.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/obb3.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/opengl.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/plane.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/quad.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/quaternion.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/ray.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/sphere.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/third_party/noise.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/triangle.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/utilities.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/vector.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/vector2.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/vector3.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math/vector4.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math_64/aabb2.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math_64/aabb3.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math_64/colors.dart
@@ -255,7 +205,6 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math_64/vector2.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math_64/vector3.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/src/vector_math_64/vector4.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/vector_math.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/lib/vector_math_64.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.3/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.3/lib/src/api_ms_win_ro_typeresolution_l1_1_0.dart
@@ -425,9 +374,6 @@
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.3/lib/src/winmd_constants.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.3/lib/win32.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.5.1/LICENSE
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.5.1/lib/src/options.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.5.1/lib/src/workmanager.dart
-/Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.5.1/lib/workmanager.dart
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-1.0.0/LICENSE
 /Users/justinding/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-1.0.0/lib/xdg_directories.dart
 /Users/justinding/Documents/flutter/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf

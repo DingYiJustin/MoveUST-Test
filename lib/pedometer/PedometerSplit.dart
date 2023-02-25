@@ -30,6 +30,7 @@ class _PedoCheckState extends State<PedoCheck> {
   //the last total Step walked (today?) retrieved from the pedometer api
   int lastSteps = 0;
 
+  //in order to let it update the lastSteps for the first time
   bool shouldUpdateLastSteps = true;
 
   late locationSettings loc;
@@ -42,6 +43,12 @@ class _PedoCheckState extends State<PedoCheck> {
   late StreamSubscription statusSubscript;
   late StreamSubscription locationSubscript;
 
+  //multi start results in multi subscription in location stream, this avoid multi start and multi pause
+  bool started = false;
+
+  //since I may manually set the status to stop when user click stop button, I should use 
+  //switchStatus to determine whether i should set the status back to walking
+  bool switchStatus = false;
 
   @override
   void initState() {
@@ -101,6 +108,7 @@ class _PedoCheckState extends State<PedoCheck> {
   }
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
+    print('Pedo Status Change');
     print(event);
     setState(() {
       _status = event.status;
@@ -128,11 +136,11 @@ class _PedoCheckState extends State<PedoCheck> {
     loc = locationSettings(setParentState: setState, status: _status);
     await loc.initalSettings();
 
-    // _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-    // statusSubscript = _pedestrianStatusStream
-    //     .listen(onPedestrianStatusChanged);
-    // statusSubscript.onError(onPedestrianStatusError);
-    // statusSubscript.pause();
+    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+    statusSubscript = _pedestrianStatusStream
+        .listen(onPedestrianStatusChanged);
+    statusSubscript.onError(onPedestrianStatusError);
+    statusSubscript.pause();
 
     // _stepCountStream = Pedometer.stepCountStream;
     // stepSubscript=_stepCountStream.listen(onStepCount);
@@ -152,28 +160,37 @@ class _PedoCheckState extends State<PedoCheck> {
   }
 
   void startListening(){
-
-    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-    statusSubscript = _pedestrianStatusStream
-        .listen(onPedestrianStatusChanged);
-    statusSubscript.onError(onPedestrianStatusError);
-    // statusSubscript.pause();
-
-    _stepCountStream = Pedometer.stepCountStream;
-    stepSubscript=_stepCountStream.listen(onStepCount);
-    stepSubscript.onError(onStepCountError);
-    // stepSubscript.pause();
-
-    locationSubscript =loc.location.onLocationChanged.listen(loc.onLocationChange);
-    locationSubscript.onError((error){
-        //When user doesnot "allow location checking forever", the error will occur
-        //in this case, we should warn the user that their step won't update.
-        print('Location Update Error: $error');
+    if(!started){
+      if(switchStatus){
+        setState(() {
+          _status = 'walking';
+        });
+        switchStatus = false;
       }
-    );
-    // locationSubscript.pause();
-     
-    if (!mounted) return;
+      
+
+      // _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+      // statusSubscript = _pedestrianStatusStream
+      //     .listen(onPedestrianStatusChanged);
+      // statusSubscript.onError(onPedestrianStatusError);
+      statusSubscript.resume();
+
+      _stepCountStream = Pedometer.stepCountStream;
+      stepSubscript=_stepCountStream.listen(onStepCount);
+      stepSubscript.onError(onStepCountError);
+      // stepSubscript.pause();
+
+      locationSubscript =loc.location.onLocationChanged.listen(loc.onLocationChange);
+      locationSubscript.onError((error){
+          //When user doesnot "allow location checking forever", the error will occur
+          //in this case, we should warn the user that their step won't update.
+          print('Location Update Error: $error');
+        }
+      );
+      // locationSubscript.pause();
+      started = true;
+      if (!mounted) return;
+    }
   }
 
   @override
@@ -225,17 +242,25 @@ class _PedoCheckState extends State<PedoCheck> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(onPressed: (){
+                    print('START');
                     startListening();
                   }, child: Text('Start', style: TextStyle(fontSize: 20),)),
                   ElevatedButton(onPressed: (){
-                      statusSubscript.cancel();
-                      stepSubscript.cancel();
-                      locationSubscript.cancel();
-                      setState(() {
-                        _status = 'stopped';
-                        shouldUpdateLastSteps = true;
+                      print("STOP");
+                      if(started){
+                        statusSubscript.pause();
+                        stepSubscript.cancel();
+                        locationSubscript.cancel();
+                        setState(() {
+                          if(_status == 'walking'){
+                            _status = 'stopped';
+                            switchStatus = true;
+                          }
+                          shouldUpdateLastSteps = true;
+                          started = false;
 
-                      });
+                        });
+                      }
                   }, child: Text('Stop', style: TextStyle(fontSize: 20),))
 
                 ],

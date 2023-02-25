@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		QPXdJ38L9NBNsCvVpDv6PGOkmsk=
+		tJp0eMIpgFgdO3EnrY4mYUVYUMY=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Oe24L5EpmyzCGot38Yvu8sXnwPg=
+		1bail/5PbjAVvsUnSL3aMt7MFNo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		sNRyz70f1RF9ggBspfJ8gzthVjs=
+		fHbeV0+ADtreOuCM/p4TpQ36QKg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -202,7 +202,7 @@
 		</data>
 		<key>Frameworks/location.framework/location</key>
 		<data>
-		bxFdFOJ+Ll13zs7oFLhvMMpUuS0=
+		/uhkwvw9NLYWkF6nMKtFA/Q8bQ8=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
 		<data>
-		5iJmlRdQelptHyKFc3Z8u1PCmIs=
+		wyA5Z57Y97SUfLUu7+EayyFliFk=
 		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
@@ -226,7 +226,7 @@
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		AhJdieiChPyp/IYjXTkHKe9noOM=
+		SX/nagnpWd6/QXZ8o6ApsnBy07s=
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
 		<data>
@@ -238,7 +238,7 @@
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
 		<data>
-		4vYDdLyX3IYAXb38MvEUSK8cXVw=
+		R6FlQFQW2xjjRzw30x5I+zCT9oA=
 		</data>
 		<key>Frameworks/workmanager.framework/Info.plist</key>
 		<data>
@@ -250,7 +250,7 @@
 		</data>
 		<key>Frameworks/workmanager.framework/workmanager</key>
 		<data>
-		Uj3ZXKWQMoe02XGXJT21ZtK2aoQ=
+		N1qIKdsCXUQRBaz70FY98dmD0Pw=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -262,7 +262,7 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		IzKIao96fZWHE1q3yBnrt9ayNok=
+		+BNrRJptyEmgXDrGBzXMfo7re0s=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -341,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			r2L+OiuQr2XtbOIHms9+E1+pQG3fZXRv19Ta/K8BlJw=
+			EzvwxbqODSZb0Rxy9AqLCRyjwNnTpjgUcwnmvRhAiig=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -355,7 +355,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VfRpOrx3U28MxQVr60Z8Ii4gpQL/T+ia6z9FXELQD2g=
+			OdkK+AqRqjXZY8l6wbxzVHOqp+BIJl8FYj5CaiQuZYU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -404,7 +404,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sS7zZAc1O8mYM9gxW/SaV8XGj/O3zQhZtP6csc5Ym6o=
+			NFN37ofl3QU1uW0BmZShsbWyO6frMC77ieVCZls6G0o=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -614,7 +614,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AOAu2KF46sE9I56uJKMZsO6LDdREx40x7xS0YMC8Rjs=
+			Qd3r+dBD9eQdPtiYXb3Jz1DXyi6aaXhs8W4ib8ulYOA=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
@@ -635,7 +635,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FOsFpArGIgqIDpCAMSxZS5vjoXpdpEnKcRGvxPDnQII=
+			pVb77awiB75DiKQ+HnsJM6AmFASHzfKrw8KMVNZ+mp8=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
@@ -656,7 +656,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7jsqk4n0yVQIoizjfQJ+23YrFc5jLO8EYvfyooSeP+0=
+			AqF+T3sZsK5Tnlkfi2SLPFkvRYlQqI8GLR8zkTSKtMY=
 			</data>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
@@ -677,7 +677,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			p1fIxWPnFAYvbJz87vRCDlLAEwYtdneqrgNRdwZ4+4E=
+			Jw0NNVP85DaR48s2i0BvELWmr+wTd1lTYrumP4Z86VE=
 			</data>
 		</dict>
 		<key>Frameworks/workmanager.framework/Info.plist</key>
@@ -698,14 +698,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			f+kow8bsd9cu7ygjh/GiZlwp3I2oVKD+Ht8PYVfZSOs=
+			LcYyYJgJJX4Ces1GAbXhVe4eXawu6BIcm3TFCkBuum0=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			f3dasZ27QlI2LsM4N5e4HblrnSaK0IUhfjUHpKz+HZs=
+			TR8ber22Dpj7oGA5MuxE/RDLN2+lf70sv+WwcWPz/BA=
 			</data>
 		</dict>
 	</dict>
