@@ -120,33 +120,6 @@ class locationSettings{
     
   }
 
-
-  //   Future<LocationData> _getPermission() async{
-  //   location = new Location();
-
-  //   bool _serviceEnabled;
-  //   PermissionStatus _permissionGranted;
-  //   LocationData _locationData;
-
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     if (!_serviceEnabled) {
-  //       return Future.error("Location services are disabled");
-  //     }
-  //   }
-
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return Future.error('Location permissions are denied');
-  //     }
-  //   }
-
-  //   return _locationData = await location.getLocation();
-  // }
-
   // calculate the distance between to lat lon location
   double convertLatLonToDistance(LocationData position, LocationData lastPos){
     var p = 0.017453292519943295;
@@ -165,7 +138,7 @@ class locationSettings{
         print('position is null');
         return;
       }
-      
+      print('current accuracy: ${position.accuracy}');
       //change lat lon location distance to distance in meters
       double distToPre = convertLatLonToDistance(position, prePos);
 
@@ -184,6 +157,9 @@ class locationSettings{
       //if the distance between the last recorded position and the current position is bigger than 4, 
       //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
       print("distToPre1:$distToPre");
+      print('current position: lat: ${position.latitude} lon:${position.longitude}');
+      print('pre position: lat: ${prePos.latitude} lon:${prePos.longitude}');
+
       if(distToPre >= 5.0 && !moving){
           distToPre = 0;
           double dist = convertLatLonToDistance(position, lastPos);
