@@ -22,7 +22,7 @@ class PedoCheckState extends State<PedoCheck> {
   //The counter to check whether the lastSteps should be update
   int stepCounter =0;
   //The timer to have a smooth update of step count
-  Timer stepTimer = Timer(Duration(days: 1),(){});
+  Timer stepTimer = Timer(Duration(seconds: 1),(){});
   //totalSteps moved after starting the app
   int totalSteps = 0;
   //totalSteps presented in the screen
@@ -50,6 +50,7 @@ class PedoCheckState extends State<PedoCheck> {
   //since I may manually set the status to stop when user click stop button, I should use 
   //switchStatus to determine whether i should set the status back to walking
   bool switchStatus = false;
+
 
   @override
   void initState() {
@@ -199,13 +200,14 @@ class PedoCheckState extends State<PedoCheck> {
     // TODO: implement dispose
     super.dispose();
     stepTimer.cancel();
+    loc.positionTimer.cancel();
 
   }
 
   @override
   Widget build(BuildContext context) {
 
-          //build while testing
+          // build while testing
   //         return MaterialApp(home:Center(
   //         child: Column(
   //           mainAxisAlignment: MainAxisAlignment.center,

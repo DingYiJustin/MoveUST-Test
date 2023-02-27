@@ -30,7 +30,7 @@ class locationSettings{
 
   late String status;
 
-  Timer positionTimer = Timer(Duration(days: 1), (){});
+  Timer positionTimer = Timer(const Duration(seconds: 1), (){});
 
   Future<void> initalSettings(BuildContext context) async {
     lastPos = await _getPermission(context);
@@ -166,6 +166,7 @@ class locationSettings{
           print("total distance before update $dist");
           print('Update LAST POSITION');
           lastPos = position;
+          // print('last position: lat: ${lastPos.latitude} lon:${lastPos.longitude}');
           totalDistSinceLastUpdate=0;
           //Since the steps and totalDist still update when moving is true,
           //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
