@@ -212,17 +212,17 @@ class _PedoCheckState extends State<PedoCheck> {
       //if the distance between the last recorded position and the current position is bigger than 4, 
       //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
       print("distToPre1:$distToPre");
-      // if(distToPre >= 5.0 && !moving){
-      //     distToPre = 0;
-      //     double dist = convertLatLonToDistance(position, lastPos);
-      //     print("total distance before update $dist");
-      //     print('Update LAST POSITION');
-      //     lastPos = position;
-      //     totalDistSinceLastUpdate=0;
-      //     //Since the steps and totalDist still update when moving is true,
-      //     //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
-      //     moved = false;
-      // }
+      if(distToPre >= 5.0 && !moving){
+          distToPre = 0;
+          double dist = convertLatLonToDistance(position, lastPos);
+          print("total distance before update $dist");
+          print('Update LAST POSITION');
+          lastPos = position;
+          totalDistSinceLastUpdate=0;
+          //Since the steps and totalDist still update when moving is true,
+          //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
+          moved = false;
+      }
       prePos = position;
 
 

@@ -39,8 +39,6 @@ void main(){
     });
     sink.add(LocationData.fromMap(Map.of(locationDatas[0])));
     sink.add(LocationData.fromMap(Map.of(locationDatas[1])));
-
-
   });
 
   test('locationStream test1', (){
@@ -85,6 +83,14 @@ void main(){
     sink.add(LocationData.fromMap(Map.of(locationDatas[10])));
     sink.add(LocationData.fromMap(Map.of(locationDatas[11])));
     sink.add(LocationData.fromMap(Map.of(locationDatas[12])));
+  });
+
+  testWidgets('locationstream test', (WidgetTester tester) async {
+    await tester.pumpWidget( pd = PedoCheck(key:pedoKey));
+    final pedoFinder = find.byKey(pedoKey);
+    PedoCheckState c = pedoKey.currentState as PedoCheckState;
+
+    
   });
 
 }

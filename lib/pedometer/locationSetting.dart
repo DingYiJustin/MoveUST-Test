@@ -37,15 +37,48 @@ class locationSettings{
     prePos = lastPos;
     print('init prePos');
     location.enableBackgroundMode(enable: true);
+    return;
 
   }
+
+  // void test(){
+  //   throw Exception('aaa');
+  // }
   
   Future<LocationData> _getPermission(BuildContext context) async{
+    // test();
+
+    if(await pm.Permission.location.isPermanentlyDenied){
+          showDialog(
+            barrierDismissible:false ,
+            context: context, builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2, vertical: MediaQuery.of(context).size.height*0.3),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+                ),
+                  child:Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Container(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.02), child: Text('The app needs permenant location permission to validate your steps in background',textAlign: TextAlign.center,),),
+                    ElevatedButton(onPressed: (){
+                      pm.openAppSettings();
+                      Navigator.pop(context);
+
+                    }, child: Text('Set Permission') )
+                  ],)
+                )
+                
+            );
+          },);
+    }
+
     location = new Location();
     bool _serviceEnabled;
     bool _serviceAlwaysEnabled;
     pm.PermissionStatus _permissionGranted;
     LocationData _locationData;
+
 
     _serviceAlwaysEnabled =await pm.Permission.locationAlways.isGranted;
     if(!_serviceAlwaysEnabled){

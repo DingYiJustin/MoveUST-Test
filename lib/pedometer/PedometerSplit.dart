@@ -135,14 +135,20 @@ class PedoCheckState extends State<PedoCheck> {
 
 
   Future<void> initPlatformState() async {
-    loc = locationSettings(setParentState: setState, status: _status);
-    await loc.initalSettings(context);
 
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+
+
     statusSubscript = _pedestrianStatusStream
         .listen(onPedestrianStatusChanged);
     statusSubscript.onError(onPedestrianStatusError);
     statusSubscript.pause();
+
+    loc = locationSettings(setParentState: setState, status: _status);
+    // print('1');
+    await loc.initalSettings(context);
+    // print("object");
+    
 
     // _stepCountStream = Pedometer.stepCountStream;
     // stepSubscript=_stepCountStream.listen(onStepCount);
@@ -320,11 +326,19 @@ class PedoCheckState extends State<PedoCheck> {
                       : TextStyle(fontSize: 20, color: Colors.red),
                 ),
               ) ,
+              Divider(
+                height: 20,
+                thickness: 0,
+                color: Colors.white,
+              ),
               Center(
-                child: Text(
-                  'Distance Walked: ${loc.totalDist}',
-                  style: TextStyle(fontSize: 30),
-                ),
+                child: 
+                Column(
+                  children: [Text('Distance Walked:',style: TextStyle(fontSize: 30),),
+                  Text('${loc.totalDist.toStringAsFixed(1)}m',style: TextStyle(fontSize: 30),)
+                ],
+                )
+                
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

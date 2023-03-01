@@ -67,6 +67,8 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 
+import 'package:flutter/services.dart';
+
 
 String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
@@ -78,7 +80,12 @@ String formatDate(DateTime d) {
 
 
 void main() {
-  runApp(MyApp());
+  //disable the rotation of the screen
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+    .then((_) {
+      runApp(MyApp());
+    });
 }
 
 class MyApp extends StatelessWidget {
