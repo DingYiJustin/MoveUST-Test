@@ -29,7 +29,7 @@ class customDialog extends StatelessWidget {
     child:Container(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding!, vertical:verticalPadding!),
       child: Container(
-        decoration: BoxDecoration(color: Color.fromARGB(255, 230, 230, 230),
+        decoration: BoxDecoration(color: Color.fromARGB(245, 250, 250, 250),
         borderRadius: BorderRadius.circular(10)
         ),
           child:
@@ -58,7 +58,7 @@ class customDialog extends StatelessWidget {
               Container(
                   margin: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height-2*verticalPadding!)*0.02),
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(232, 232, 232, 1),
+                    color: Color.fromARGB(255, 250, 250, 250),
                     border: Border.symmetric(horizontal: BorderSide(color: Colors.black38))),
                   height: (MediaQuery.of(context).size.height-2*verticalPadding!)*0.1,
                   width: (MediaQuery.of(context).size.width-2*horizontalPadding!)*1,

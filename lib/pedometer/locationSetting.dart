@@ -34,6 +34,7 @@ class locationSettings{
   Timer positionTimer = Timer(const Duration(seconds: 1), (){});
 
   Future<void> initialSettings(BuildContext context) async {
+    //check if getPermission throws an error, if yes, throw the error again
     try{
       lastPos = await _getPermission(context);
       prePos = lastPos;
@@ -46,6 +47,9 @@ class locationSettings{
 
   }
   
+  /**
+   * The function to request for permissions for localization 
+   */
   Future<LocationData> _getPermission(BuildContext context) async{
     // test();
     location = new Location();
@@ -55,16 +59,20 @@ class locationSettings{
     LocationData _locationData;
     try{
 
+      //check if the localization permission has been permanently denied by the user
       if(await pm.Permission.location.isPermanentlyDenied){
+
+        //show dialog to let user manually set the permission if he/she permanently denied
         await showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(OnPress: (){
             pm.openAppSettings();
-            // Navigator.pop(context);
             }, 
             context: context);
         },);
+
+        //check if the user changed the permission, if no, throw an error
         if(await pm.Permission.location.isPermanentlyDenied){
           print('cannot');
           return Future.error('cannot retrieve location');
@@ -73,19 +81,23 @@ class locationSettings{
 
       
 
-
+      //check if the user set the permission to Always
       _serviceAlwaysEnabled =await pm.Permission.locationAlways.isGranted;
       if(!_serviceAlwaysEnabled){
+        //if not always, check if the permission is whenInUse
         _serviceEnabled = await pm.Permission.locationWhenInUse.isGranted;
         if(!_serviceEnabled){
+          //if not whenInUse, request for whenInUse so that we can request for permanent
           _serviceEnabled = await pm.Permission.locationWhenInUse.request().isGranted;
         }
-        print('serviceEnable:$_serviceEnabled');
 
+        //check if the permission is whenInUse or Only once now
         if(_serviceEnabled){
+          //if yes, request for permanent permission
           _serviceAlwaysEnabled = await pm.Permission.locationAlways.request().isGranted;
+          //if request failed, use dialog to let user manually set the permission
           if(!_serviceAlwaysEnabled){
-            print('no alway');
+            // print('no alway');
             // The user opted to never again see the permission request dialog for this
             // app. The only way to change the permission's status now is to let the
             // user manually enable it in the system settings.
@@ -104,6 +116,7 @@ class locationSettings{
           }
         }
         else{
+          //if the permission is not whenInUse or onlyOnce, let the user manually set the permission
           print('no in use');
           await showDialog(
               barrierDismissible:false ,
@@ -119,7 +132,9 @@ class locationSettings{
         }
       }
 
-      if(await pm.Permission.location.isPermanentlyDenied || !(await pm.Permission.locationAlways.isGranted||await pm.Permission.locationAlways.isGranted)){
+      //Before getting the location, check whether the permission is whenInUse or Always, 
+      //if no, throw an error
+      if(await pm.Permission.location.isPermanentlyDenied || !(await pm.Permission.locationWhenInUse.isGranted||await pm.Permission.locationAlways.isGranted)){
           print('cannot retrieve location last');
           return Future.error('cannot retrieve location');
       }

@@ -95,6 +95,8 @@ class PedoCheckState extends State<PedoCheck> {
 
     }
     else{
+      //trying to store some steps so that when the user is first moving 
+      //some of the steps may be recorded (maximum 60 steps stores)
       stepTimer.cancel();
       if(shouldUpdateLastSteps){
         shouldUpdateLastSteps = false;
@@ -124,11 +126,11 @@ class PedoCheckState extends State<PedoCheck> {
     setState(() {
       _status = 'Pedestrian Status not available';
     });
+    //warn user when there is something wrong with pedo status
     showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(OnPress: (){
-            print(1);
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian Status. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
@@ -141,11 +143,11 @@ class PedoCheckState extends State<PedoCheck> {
     setState(() {
       _steps = 'Step Count not available';
     });
+    //warn user when there is something wrong with pedo counting
     showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(OnPress: (){
-            print(2);
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian count. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
@@ -154,17 +156,33 @@ class PedoCheckState extends State<PedoCheck> {
 
 
   Future<void> initPlatformState() async {
+    
+    //occasionlly this may throw an error that the pedo status is not avaliable
+    try{
+      _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
 
-    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+      //Here we subscribe the pedo status stream because we want to know and update the user status when he/she click start
+      statusSubscript = _pedestrianStatusStream
+          .listen(onPedestrianStatusChanged);
+      statusSubscript.onError(onPedestrianStatusError);
+      statusSubscript.pause();
+      
+    }catch(e){
+        showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the pedometer. You can try to restart the App, or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
+    }
 
-
-    statusSubscript = _pedestrianStatusStream
-        .listen(onPedestrianStatusChanged);
-    statusSubscript.onError(onPedestrianStatusError);
-    statusSubscript.pause();
 
     loc = locationSettings(setParentState: setState, status: _status);
-    // print('1');
+
+    //check if the initialSettings throws an error, 
+    //if yes, tell the user there is a problem on the permission of localization
     try{
       await loc.initialSettings(context);
     }catch(e){
@@ -172,34 +190,19 @@ class PedoCheckState extends State<PedoCheck> {
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(OnPress: (){
-            print(3);
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
         },);
     }
-    // print("object");
-    
-
-    // _stepCountStream = Pedometer.stepCountStream;
-    // stepSubscript=_stepCountStream.listen(onStepCount);
-    // stepSubscript.onError(onStepCountError);
-    // stepSubscript.pause();
-
-    // locationSubscript =loc.location.onLocationChanged.listen(loc.onLocationChange);
-    // locationSubscript.onError((error){
-    //     //When user doesnot "allow location checking forever", the error will occur
-    //     //in this case, we should warn the user that their step won't update.
-    //     print('Location Update Error: $error');
-    //   }
-    // );
-    // locationSubscript.pause();
     
     if (!mounted) return;
   }
 
   void startListening(){
     if(!started){
+
+      //switch the Status to walking first when user click start because I manually set it to false
       if(switchStatus){
         setState(() {
           _status = 'walking';
@@ -207,28 +210,36 @@ class PedoCheckState extends State<PedoCheck> {
         switchStatus = false;
       }
       
+      try{
+        //resume the subscribtion of status stream so that we know whether the user is actually walking
+        statusSubscript.resume();
 
-      // _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-      // statusSubscript = _pedestrianStatusStream
-      //     .listen(onPedestrianStatusChanged);
-      // statusSubscript.onError(onPedestrianStatusError);
-      statusSubscript.resume();
+        //initialize the stepcount stream 
+        _stepCountStream = Pedometer.stepCountStream;
+        stepSubscript=_stepCountStream.listen(onStepCount);
+        stepSubscript.onError(onStepCountError);
+      }catch(e){
+        showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
+      }
+      
 
-      _stepCountStream = Pedometer.stepCountStream;
-      stepSubscript=_stepCountStream.listen(onStepCount);
-      stepSubscript.onError(onStepCountError);
-      // stepSubscript.pause();
-
+      //initialize the location stream
       locationSubscript =loc.location.onLocationChanged.listen(loc.onLocationChange);
       locationSubscript.onError((error){
-          //When user doesnot "allow location checking forever", the error will occur
+          //When user doesnot "allow location checking forever", the error may occur
           //in this case, we should warn the user that their step won't update.
           print('Location Update Error: $error');
           showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(OnPress: (){
-            print(4);
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 
