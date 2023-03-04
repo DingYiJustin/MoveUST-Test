@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		SlTf3PBbvdrzMMqpB9EjhvPoUMA=
+		p64KsYuvsg57q43kRbMfbsD/OBo=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		tWk6mjgdGzIBXxoTFI+cwjyCDLU=
+		YqDQ/wfgk1KkEIEuHFU5EzuMDcY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		GHaqlng4XVph3Ys4lnjD3I5JiHY=
+		3MnT97OjR5zQ5N5f4ai8AsqNf+M=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -202,7 +202,7 @@
 		</data>
 		<key>Frameworks/location.framework/location</key>
 		<data>
-		8iZdTKgBz1qfbM5fynRHPPtvfa4=
+		J0JxBgg2QPRmIUsXX7WTzlrrQF0=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
 		<data>
-		Q2S6a+8YRfwAAY89Fqg+jkSMg/g=
+		bVv3P71TEz+P96daw247bec92Yg=
 		</data>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
 		<data>
@@ -226,7 +226,7 @@
 		</data>
 		<key>Frameworks/pedometer.framework/pedometer</key>
 		<data>
-		zftqbpf+JskPPMl/7WX9UOX66o8=
+		f6MfP+KcfqtcbwmZigpX//dZ0cM=
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
 		<data>
@@ -238,7 +238,7 @@
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
 		<data>
-		LZN+N4Vc+yVvSjUZQYxrPgbLtAc=
+		8NPwdWzJP4EbGJEGBuUS8QtAGIA=
 		</data>
 		<key>Frameworks/workmanager.framework/Info.plist</key>
 		<data>
@@ -250,11 +250,11 @@
 		</data>
 		<key>Frameworks/workmanager.framework/workmanager</key>
 		<data>
-		raM7XC80461R0GvsmRma3bB819Q=
+		2+VX5XLm+iYDoeavqI8kL4NWp6c=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		u2fWuGHJbNKQ4UQQ3KU+fMqTP/E=
+		1cchN/nDEwrkri0QanyEgMRDKMM=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -262,7 +262,7 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		+BNrRJptyEmgXDrGBzXMfo7re0s=
+		nj3fN3X81oK7/JDEMwKbswZnFoM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -341,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZK0/CvXEbk0WNmCfpujeD3pnQtb1vJ5lXveDZR3sdKE=
+			nv/r2DkCQTsbqf/PZGDcOQXgUc8n2cus4D5OuFgbyew=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -355,7 +355,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LqKAdeJ1RsM9PM3XpJWa87GHz1Q/XUQxgwlUhgz5ZDU=
+			li05zS6vHD1b2kKdq98xqCqFC659RgLY7zbgF3HbZXg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -404,7 +404,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			76aSTM8fUnltwnCK4yF4UaDje9KPEbyPuuBCrKl+XW8=
+			S/qq66nhPpZx5uBu3RMgauNE3uusKLW8lNDLafHzXsc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -614,7 +614,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yIXewvODb9NBbFU3+wyLBUIuppRajrsUhg+wGApHAw4=
+			p6M86ulaPA6yBfOKqm83uGiHk5MKHaFPVSTQwPl02eo=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
@@ -635,7 +635,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KZiybHUaRmUwORXxw060wxHSGqUiZcXNUdEWWjn7M5c=
+			ma0p0SX65A7QUzAcSlHGkP0iHDNoeagO604pcjmdaws=
 			</data>
 		</dict>
 		<key>Frameworks/pedometer.framework/Info.plist</key>
@@ -656,7 +656,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			suCIFg0m8KlPZ3eljapiLuuFiuO5BH7yX0ZeXCdsOWw=
+			6HWVMxINCm0C70bHaU2fyQAtS5f+YjQdwuH5PaJbZl8=
 			</data>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
@@ -677,7 +677,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7NaR3SwQCtQaTwxblw1kyl7M1q+T3QouVHGTmQmyrtk=
+			GgQ3tItODmMGFtXFkqsMssXkfzh5n30Rc5Age4R/IGU=
 			</data>
 		</dict>
 		<key>Frameworks/workmanager.framework/Info.plist</key>
@@ -698,14 +698,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G833rHiQlfYSy2fnCfemBTRuFCWSjlYFVGMzx8YfRGo=
+			9WaINEPe4sEqMFOGDggcThKrXeGhdDAAbz5P/fuvk4g=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TR8ber22Dpj7oGA5MuxE/RDLN2+lf70sv+WwcWPz/BA=
+			vYp/dpvil+21JnCylEznOEC0Ie9IHEOTkzYwr/r2t+U=
 			</data>
 		</dict>
 	</dict>

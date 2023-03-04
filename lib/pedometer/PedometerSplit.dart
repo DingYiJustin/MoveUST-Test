@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:pedometer/pedometer.dart';
 import 'locationSetting.dart';
+import 'customDialog.dart';
 
 
 
@@ -123,6 +124,15 @@ class PedoCheckState extends State<PedoCheck> {
     setState(() {
       _status = 'Pedestrian Status not available';
     });
+    showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            print(1);
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian Status. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
     print(_status);
   }
 
@@ -131,6 +141,15 @@ class PedoCheckState extends State<PedoCheck> {
     setState(() {
       _steps = 'Step Count not available';
     });
+    showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            print(2);
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian count. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+    },);
   }
 
 
@@ -146,7 +165,19 @@ class PedoCheckState extends State<PedoCheck> {
 
     loc = locationSettings(setParentState: setState, status: _status);
     // print('1');
-    await loc.initalSettings(context);
+    try{
+      await loc.initialSettings(context);
+    }catch(e){
+      showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            print(3);
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
+    }
     // print("object");
     
 
@@ -193,6 +224,16 @@ class PedoCheckState extends State<PedoCheck> {
           //When user doesnot "allow location checking forever", the error will occur
           //in this case, we should warn the user that their step won't update.
           print('Location Update Error: $error');
+          showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            print(4);
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 
+            message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
         }
       );
       // locationSubscript.pause();
@@ -345,6 +386,7 @@ class PedoCheckState extends State<PedoCheck> {
                 children: [
                   ElevatedButton(onPressed: (){
                     print('START');
+
                     startListening();
                   }, child: Text('Start', style: TextStyle(fontSize: 20),)),
                   ElevatedButton(onPressed: (){

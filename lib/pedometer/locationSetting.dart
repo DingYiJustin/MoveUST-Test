@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'dart:math' show cos, sqrt, asin;
 import 'package:permission_handler/permission_handler.dart' as pm;
+import 'customDialog.dart';
 
 
 class locationSettings{
@@ -16,7 +17,7 @@ class locationSettings{
   //The last previous position updated
   late LocationData lastPos;
   //the last position recorded
-  late LocationData prePos;
+  LocationData? prePos = null;
   //the totalDistance the user traveled since last update
   double totalDist = 0;
   //the totalDistance since last position (lastPos) update
@@ -32,124 +33,104 @@ class locationSettings{
 
   Timer positionTimer = Timer(const Duration(seconds: 1), (){});
 
-  Future<void> initalSettings(BuildContext context) async {
-    lastPos = await _getPermission(context);
-    prePos = lastPos;
-    print('init prePos');
-    location.enableBackgroundMode(enable: true);
+  Future<void> initialSettings(BuildContext context) async {
+    try{
+      lastPos = await _getPermission(context);
+      prePos = lastPos;
+      print('init prePos');
+      location.enableBackgroundMode(enable: true);
+    }catch(e){
+      return Future.error('cannot retrieve location data');
+    }
     return;
 
   }
-
-  // void test(){
-  //   throw Exception('aaa');
-  // }
   
   Future<LocationData> _getPermission(BuildContext context) async{
     // test();
-
-    if(await pm.Permission.location.isPermanentlyDenied){
-          showDialog(
-            barrierDismissible:false ,
-            context: context, builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2, vertical: MediaQuery.of(context).size.height*0.3),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white,
-                borderRadius: BorderRadius.circular(10)
-                ),
-                  child:Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Container(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.02), child: Text('The app needs permenant location permission to validate your steps in background',textAlign: TextAlign.center,),),
-                    ElevatedButton(onPressed: (){
-                      pm.openAppSettings();
-                      Navigator.pop(context);
-
-                    }, child: Text('Set Permission') )
-                  ],)
-                )
-                
-            );
-          },);
-    }
-
     location = new Location();
     bool _serviceEnabled;
     bool _serviceAlwaysEnabled;
     pm.PermissionStatus _permissionGranted;
     LocationData _locationData;
+    try{
 
-
-    _serviceAlwaysEnabled =await pm.Permission.locationAlways.isGranted;
-    if(!_serviceAlwaysEnabled){
-      _serviceEnabled = await pm.Permission.locationWhenInUse.isGranted;
-      if(!_serviceEnabled){
-        _serviceEnabled = await pm.Permission.locationWhenInUse.request().isGranted;
-      }
-
-      if(_serviceEnabled){
-        _serviceAlwaysEnabled = await pm.Permission.locationAlways.request().isGranted;
-        if(!_serviceAlwaysEnabled){
-          print('no alway');
-          // The user opted to never again see the permission request dialog for this
-          // app. The only way to change the permission's status now is to let the
-          // user manually enable it in the system settings.
-          showDialog(
-            barrierDismissible:false ,
-            context: context, builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2, vertical: MediaQuery.of(context).size.height*0.3),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white,
-                borderRadius: BorderRadius.circular(10)
-                ),
-                  child:Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Container(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.02), child: Text('The app needs permenant location permission to validate your steps in background',textAlign: TextAlign.center,),),
-                    ElevatedButton(onPressed: (){
-                      pm.openAppSettings();
-                      Navigator.pop(context);
-
-                    }, child: Text('Set Permission') )
-                  ],)
-                )
-                
-            );
-          },);
-
-          // return Future.error('Location permissions are denied');
-
+      if(await pm.Permission.location.isPermanentlyDenied){
+        await showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(OnPress: (){
+            pm.openAppSettings();
+            // Navigator.pop(context);
+            }, 
+            context: context);
+        },);
+        if(await pm.Permission.location.isPermanentlyDenied){
+          print('cannot');
+          return Future.error('cannot retrieve location');
         }
       }
-      else{
-        print('no in use');
-        showDialog(
-            barrierDismissible:false ,
-            context: context, builder: (context) {
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2, vertical: MediaQuery.of(context).size.height*0.3),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white,
-                borderRadius: BorderRadius.circular(10)
-                ),
-                  child:Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Container(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.02), child: Text('The app needs permenant location permission to validate your steps in background',textAlign: TextAlign.center,),),
-                    ElevatedButton(onPressed: (){
-                      pm.openAppSettings();
-                      Navigator.pop(context);
 
-                    }, child: Text('Set Permission') )
-                  ],)
-                )
-                
-            );
-          },);
-        // return Future.error('Location permissions are denied');
+      
+
+
+      _serviceAlwaysEnabled =await pm.Permission.locationAlways.isGranted;
+      if(!_serviceAlwaysEnabled){
+        _serviceEnabled = await pm.Permission.locationWhenInUse.isGranted;
+        if(!_serviceEnabled){
+          _serviceEnabled = await pm.Permission.locationWhenInUse.request().isGranted;
+        }
+        print('serviceEnable:$_serviceEnabled');
+
+        if(_serviceEnabled){
+          _serviceAlwaysEnabled = await pm.Permission.locationAlways.request().isGranted;
+          if(!_serviceAlwaysEnabled){
+            print('no alway');
+            // The user opted to never again see the permission request dialog for this
+            // app. The only way to change the permission's status now is to let the
+            // user manually enable it in the system settings.
+            await showDialog(
+              barrierDismissible:false ,
+              context: context, builder: (context) {
+              return customDialog(OnPress: (){
+                pm.openAppSettings();
+                // Navigator.pop(context);
+                }, 
+                context: context);
+              },);
+
+            // return Future.error('Location permissions are denied');
+
+          }
+        }
+        else{
+          print('no in use');
+          await showDialog(
+              barrierDismissible:false ,
+              context: context, builder: (context) {
+              return 
+                customDialog(OnPress: (){
+                  pm.openAppSettings();
+                  // Navigator.pop(context);
+                }, 
+                context: context);
+            },);
+          // return Future.error('Location permissions are denied');
+        }
       }
-    }
 
-    return _locationData = await location.getLocation();
+      if(await pm.Permission.location.isPermanentlyDenied || !(await pm.Permission.locationAlways.isGranted||await pm.Permission.locationAlways.isGranted)){
+          print('cannot retrieve location last');
+          return Future.error('cannot retrieve location');
+      }
+
+      _locationData = await location.getLocation();
+    }catch(e){
+      return Future.error(Exception("cannot retrieve location data"));
+    }
+    return _locationData;
+
+
     
   }
 
@@ -173,13 +154,14 @@ class locationSettings{
       }
       print('current accuracy: ${position.accuracy}');
       //change lat lon location distance to distance in meters
-      double distToPre = convertLatLonToDistance(position, prePos);
+      double distToPre = convertLatLonToDistance(position, prePos!);
 
       //if the user is moving right now, add the distance from last position(prePos) to the total distance 
       if(moving){
         if(status == 'walking'){
           setParentState(() {
             totalDist+=distToPre;
+            print('update distance while walking:$totalDist');
           });
         }
       }
@@ -189,15 +171,15 @@ class locationSettings{
 
       //if the distance between the last recorded position and the current position is bigger than 4, 
       //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
-      print("distToPre1:$distToPre");
-      print('current position: lat: ${position.latitude} lon:${position.longitude}');
-      print('pre position: lat: ${prePos.latitude} lon:${prePos.longitude}');
+      // print("distToPre1:$distToPre");
+      // print('current position: lat: ${position.latitude} lon:${position.longitude}');
+      // print('pre position: lat: ${prePos!.latitude} lon:${prePos!.longitude}');
 
       if(distToPre >= 5.0 && !moving){
           distToPre = 0;
           double dist = convertLatLonToDistance(position, lastPos);
-          print("total distance before update $dist");
-          print('Update LAST POSITION');
+          // print("total distance before update $dist");
+          // print('Update LAST POSITION');
           lastPos = position;
           // print('last position: lat: ${lastPos.latitude} lon:${lastPos.longitude}');
           totalDistSinceLastUpdate=0;
@@ -211,7 +193,7 @@ class locationSettings{
 
       double dist = convertLatLonToDistance(position, lastPos);
         
-      print('totalDist:$dist');
+      // print('totalDist:$dist');
 
 
       //if distance away is greater than 30, we assume that the user is truely walking
@@ -221,11 +203,11 @@ class locationSettings{
         lastPos = position;
         distToPre = 0;
         if(!moved){
-          setParentState(() {
-            totalDist+=totalDistSinceLastUpdate;
-            print("UPATE WITH TOTALDISTSINCELASTUPDATE: $totalDist");
+          // setParentState(() {
+            totalDist+=totalDistSinceLastUpdate; 
+            // print("UPATE WITH TOTALDISTSINCELASTUPDATE: $totalDist");
 
-          });
+          // });
         }
         totalDistSinceLastUpdate = 0;
 
@@ -233,6 +215,7 @@ class locationSettings{
         positionTimer.cancel();
         if(!moving){
           moving = true;
+          
         }
         //Since during moving the totalDist is updated by disToPre, we should set the moved to true
         moved = true;
