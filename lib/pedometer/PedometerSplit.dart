@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'locationSetting.dart';
 import 'customDialog.dart';
-import 'regularStore.dart';
+import 'RegularStore.dart';
 
 
 
@@ -53,6 +53,9 @@ class PedoCheckState extends State<PedoCheck> {
   //switchStatus to determine whether i should set the status back to walking
   bool switchStatus = false;
 
+  //regularStorage for managing data to store
+  late RegularStorage regularStorage;
+  late Timer regularStoreTimer;
 
   @override
   void initState() {
@@ -197,7 +200,47 @@ class PedoCheckState extends State<PedoCheck> {
         },);
     }
 
+        try{
+      regularStorage = RegularStorage();
+    }catch(e){
+      showDialog(
+        barrierDismissible:false ,
+        context: context, builder: (context) {
+        return customDialog(onPress: (){
+          Navigator.pop(context);
+          }, 
+          context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the data storage.',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+      },);
+    }
+
+    if(regularStorage.currentValues.isNotEmpty){
+      if(regularStorage.currentValues['totalSteps']!=null){
+        totalSteps =  int.parse(regularStorage.currentValues['totalSteps']!);
+      }
+      else{
+        regularStorage.currentValues['totalSteps'] = totalSteps.toString();
+      }
+
+      if(regularStorage.currentValues['totalDist']!=null){
+        loc.totalDist =  double.parse(regularStorage.currentValues['totalDist']!);
+      }else{
+        regularStorage.currentValues['totalDist'] = loc.totalDist.toString();
+      }
+    }
     
+    regularStoreTimer = Timer.periodic(const Duration(seconds:10), (timer) async { 
+      if(totalSteps!=int.parse(regularStorage.currentValues['totalSteps']!)){
+        await regularStorage.storageManager.write('totalSteps', totalSteps.toString());
+        regularStorage.currentValues['totalSteps']= totalSteps.toString();
+      }
+
+      if((loc.totalDist-double.parse(regularStorage.currentValues['totalSteps']!).abs())>0.01){
+        await regularStorage.storageManager.write('totalSteps', totalSteps.toString());
+        regularStorage.currentValues['totalSteps']= totalSteps.toString();
+      }
+    });
+
+
     
     if (!mounted) return;
   }
@@ -228,7 +271,7 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
         },);
       }
       
@@ -245,12 +288,13 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 
-            message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 
+            message: const Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
         },);
         }
       );
       // locationSubscript.pause();
+      
       started = true;
       if (!mounted) return;
     }
@@ -262,6 +306,7 @@ class PedoCheckState extends State<PedoCheck> {
     super.dispose();
     stepTimer.cancel();
     loc.positionTimer.cancel();
+    regularStoreTimer.cancel();
 
   }
 

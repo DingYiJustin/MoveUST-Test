@@ -3,6 +3,7 @@ import 'dart:async';
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pedometer/RegularStore.dart';
 import 'package:location/location.dart';
 import 'dart:math' show cos, sqrt, asin;
 import 'package:permission_handler/permission_handler.dart' as pm;
