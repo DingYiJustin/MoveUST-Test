@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'locationSetting.dart';
 import 'customDialog.dart';
+import 'regularStore.dart';
 
 
 
@@ -130,7 +131,7 @@ class PedoCheckState extends State<PedoCheck> {
     showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian Status. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
@@ -147,7 +148,7 @@ class PedoCheckState extends State<PedoCheck> {
     showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian count. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
@@ -171,7 +172,7 @@ class PedoCheckState extends State<PedoCheck> {
         showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the pedometer. You can try to restart the App, or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
@@ -189,12 +190,14 @@ class PedoCheckState extends State<PedoCheck> {
       showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
         },);
     }
+
+    
     
     if (!mounted) return;
   }
@@ -222,7 +225,7 @@ class PedoCheckState extends State<PedoCheck> {
         showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
@@ -239,7 +242,7 @@ class PedoCheckState extends State<PedoCheck> {
           showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
             context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 

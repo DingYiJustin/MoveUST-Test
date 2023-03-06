@@ -66,7 +66,7 @@ class locationSettings{
         await showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
-          return customDialog(OnPress: (){
+          return customDialog(onPress: (){
             pm.openAppSettings();
             }, 
             context: context);
@@ -104,7 +104,7 @@ class locationSettings{
             await showDialog(
               barrierDismissible:false ,
               context: context, builder: (context) {
-              return customDialog(OnPress: (){
+              return customDialog(onPress: (){
                 pm.openAppSettings();
                 // Navigator.pop(context);
                 }, 
@@ -122,7 +122,7 @@ class locationSettings{
               barrierDismissible:false ,
               context: context, builder: (context) {
               return 
-                customDialog(OnPress: (){
+                customDialog(onPress: (){
                   pm.openAppSettings();
                   // Navigator.pop(context);
                 }, 

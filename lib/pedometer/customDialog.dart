@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
  */
 
 class customDialog extends StatelessWidget {
-  customDialog({super.key,required this.OnPress, required this.context, this.horizontalPadding, this.verticalPadding, this.buttonText = const Text('Set permission', style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), this.message= const Text('The app needs permenant location permission to validate your steps in background', textAlign: TextAlign.center, softWrap: true,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,),) });
-  late Function OnPress;
+  customDialog({super.key,required this.onPress, required this.context, this.horizontalPadding, this.verticalPadding, this.buttonText = const Text('Set permission', style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), this.message= const Text('The app needs permenant location permission to validate your steps in background', textAlign: TextAlign.center, softWrap: true,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,),) });
+  late Function onPress;
   late BuildContext context;
   late double? horizontalPadding;
   late double? verticalPadding;
@@ -29,7 +29,7 @@ class customDialog extends StatelessWidget {
     child:Container(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding!, vertical:verticalPadding!),
       child: Container(
-        decoration: BoxDecoration(color: Color.fromARGB(245, 250, 250, 250),
+        decoration: BoxDecoration(color: const Color.fromARGB(245, 250, 250, 250),
         borderRadius: BorderRadius.circular(10)
         ),
           child:
@@ -57,7 +57,7 @@ class customDialog extends StatelessWidget {
               child: 
               Container(
                   margin: EdgeInsets.symmetric(vertical: (MediaQuery.of(context).size.height-2*verticalPadding!)*0.02),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 250, 250, 250),
                     border: Border.symmetric(horizontal: BorderSide(color: Colors.black38))),
                   height: (MediaQuery.of(context).size.height-2*verticalPadding!)*0.1,
@@ -70,7 +70,7 @@ class customDialog extends StatelessWidget {
                     // color: Color.fromARGB(255, 239, 239, 239),
                     child: Center(child: buttonText,) ,
                     onTap: () {
-                    OnPress();
+                    onPress();
                    },
                   ),
 
