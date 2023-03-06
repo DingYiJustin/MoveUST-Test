@@ -34,7 +34,7 @@ class _PedoCheckState extends State<PedoCheck> {
   //The timer to have a smooth update of step count
   Timer stepTimer = Timer(Duration(days: 1),(){});
   //totalSteps moved after starting the app
-  int totalSteps = 0;
+  int totalSteps = 60;
   //totalSteps presented in the screen
   int totalStepsInScreen = 0;
   //the last total Step walked (today?) retrieved from the pedometer api

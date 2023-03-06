@@ -2,11 +2,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageManager{
-  late final FlutterSecureStorage _storage;
+  late final FlutterSecureStorage _storage=const FlutterSecureStorage();
 
-  secureStorageManager(){
-    _storage = const FlutterSecureStorage();
-  }
 
   //IOS settings, not usable with our app since the user should not input,
   //we should only implement this setting after having backend
@@ -22,6 +19,7 @@ class SecureStorageManager{
     // String? _getAccountName() =>
   //     _accountNameController.text.isEmpty ? null : _accountNameController.text;
 
+  //choose the encrypted shared perference mode in android api
   AndroidOptions _getAndroidOptions() => const AndroidOptions(
     encryptedSharedPreferences: true,
   );

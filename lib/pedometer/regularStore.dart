@@ -8,13 +8,19 @@ class RegularStorage{
   //current values that may be passed to the backend
   late Map<String,String> currentValues;
   late SecureStorageManager storageManager;
-  RegularStorage(){
-    SecureStorageManager storageManager = SecureStorageManager();
-    _initCurrentValues();
+  RegularStorage() {
+    
+    storageManager = SecureStorageManager();
+    // _initCurrentValues();
   }
 
-  Future<void> _initCurrentValues() async{
-    currentValues =  await storageManager.readAll();
+  Future<void> initCurrentValues() async{
+    try{
+      currentValues =  await storageManager.readAll();
+    }catch(e){
+      print(e);
+    }
+    
   }
 
 }

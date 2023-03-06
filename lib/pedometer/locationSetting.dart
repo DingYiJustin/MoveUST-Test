@@ -215,7 +215,7 @@ class locationSettings{
       //if distance away is greater than 30, we assume that the user is truely walking
       //then we set the moving to true and set the timer
       //already tested 20 can be panetrated
-      if(dist >= 30){
+      if(dist >= 3){
         lastPos = position;
         distToPre = 0;
         if(!moved){

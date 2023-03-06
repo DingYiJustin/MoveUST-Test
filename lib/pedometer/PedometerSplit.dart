@@ -200,8 +200,10 @@ class PedoCheckState extends State<PedoCheck> {
         },);
     }
 
-        try{
+    //try to know if there is an error loading storage
+    try{
       regularStorage = RegularStorage();
+      await regularStorage.initCurrentValues();
     }catch(e){
       showDialog(
         barrierDismissible:false ,
@@ -213,35 +215,51 @@ class PedoCheckState extends State<PedoCheck> {
       },);
     }
 
-    if(regularStorage.currentValues.isNotEmpty){
-      if(regularStorage.currentValues['totalSteps']!=null){
-        totalSteps =  int.parse(regularStorage.currentValues['totalSteps']!);
-      }
-      else{
-        regularStorage.currentValues['totalSteps'] = totalSteps.toString();
-      }
+    //if the currentValues obtain from the storage isn't empty, we validate and load the values
+    if(regularStorage.currentValues['totalSteps']!=null){
+      print('${regularStorage.currentValues['totalSteps']}');;
+      setState(() {
+        totalSteps =int.parse(regularStorage.currentValues['totalSteps']!);
+        totalStepsInScreen =  totalSteps;
+      });
+    }
+    else{
+      print('b');
+      regularStorage.currentValues['totalSteps'] = totalSteps.toString();
+    }
 
-      if(regularStorage.currentValues['totalDist']!=null){
+    if(regularStorage.currentValues['totalDist']!=null){
+      print('${regularStorage.currentValues['totalDist']}');;
+      setState(() {
         loc.totalDist =  double.parse(regularStorage.currentValues['totalDist']!);
-      }else{
-        regularStorage.currentValues['totalDist'] = loc.totalDist.toString();
-      }
+      });
+
+      
+    }else{
+              print('b');
+
+      regularStorage.currentValues['totalDist'] = loc.totalDist.toString();
     }
     
+    
+    //regularly check whether the total steps or total distance have been changed
+    //if changed, store it to the secure storage
     regularStoreTimer = Timer.periodic(const Duration(seconds:10), (timer) async { 
+
       if(totalSteps!=int.parse(regularStorage.currentValues['totalSteps']!)){
+        print('store');
         await regularStorage.storageManager.write('totalSteps', totalSteps.toString());
+        print('stored');
         regularStorage.currentValues['totalSteps']= totalSteps.toString();
       }
 
-      if((loc.totalDist-double.parse(regularStorage.currentValues['totalSteps']!).abs())>0.01){
-        await regularStorage.storageManager.write('totalSteps', totalSteps.toString());
-        regularStorage.currentValues['totalSteps']= totalSteps.toString();
+      if((loc.totalDist-double.parse(regularStorage.currentValues['totalDist']!).abs())>0.01){
+        await regularStorage.storageManager.write('totalDist', loc.totalDist.toString());
+        regularStorage.currentValues['totalDist']= loc.totalDist.toString();
       }
     });
 
 
-    
     if (!mounted) return;
   }
 
@@ -312,7 +330,6 @@ class PedoCheckState extends State<PedoCheck> {
 
   @override
   Widget build(BuildContext context) {
-
           // build while testing
   //         return MaterialApp(home:Center(
   //         child: Column(
