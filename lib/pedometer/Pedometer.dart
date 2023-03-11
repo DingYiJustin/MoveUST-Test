@@ -172,7 +172,7 @@ class PedoCheckState extends State<PedoCheck> {
       statusSubscript.pause();
       
     }catch(e){
-        showDialog(
+        await showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(onPress: (){
@@ -190,7 +190,7 @@ class PedoCheckState extends State<PedoCheck> {
     try{
       await loc.initialSettings(context);
     }catch(e){
-      showDialog(
+      await showDialog(
           barrierDismissible:false ,
           context: context, builder: (context) {
           return customDialog(onPress: (){
@@ -205,7 +205,7 @@ class PedoCheckState extends State<PedoCheck> {
       regularStorage = RegularStorage();
       await regularStorage.initCurrentValues();
     }catch(e){
-      showDialog(
+      await showDialog(
         barrierDismissible:false ,
         context: context, builder: (context) {
         return customDialog(onPress: (){
@@ -214,7 +214,7 @@ class PedoCheckState extends State<PedoCheck> {
           context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the data storage.',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
       },);
     }
-
+    print('this.}');
     //if the currentValues obtain from the storage isn't empty, we validate and load the values
     if(regularStorage.currentValues['totalSteps']!=null){
       print('${regularStorage.currentValues['totalSteps']}');;
@@ -224,7 +224,6 @@ class PedoCheckState extends State<PedoCheck> {
       });
     }
     else{
-      print('b');
       regularStorage.currentValues['totalSteps'] = totalSteps.toString();
     }
 
@@ -236,8 +235,6 @@ class PedoCheckState extends State<PedoCheck> {
 
       
     }else{
-              print('b');
-
       regularStorage.currentValues['totalDist'] = loc.totalDist.toString();
     }
     

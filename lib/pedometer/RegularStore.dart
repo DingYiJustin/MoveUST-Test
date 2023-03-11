@@ -18,7 +18,7 @@ class RegularStorage{
     try{
       currentValues =  await storageManager.readAll();
     }catch(e){
-      print(e);
+      return Future.error("storage Manager readAll error");
     }
     
   }
