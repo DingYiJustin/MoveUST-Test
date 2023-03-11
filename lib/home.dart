@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pedometer/PedometerSplit.dart';
+import 'pedometer/Pedometer.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:location/location.dart';
 
-import '../lib/pedometer/PedometerSplit.dart';
+import '../lib/pedometer/Pedometer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../lib/pedometer/locationSetting.dart';
