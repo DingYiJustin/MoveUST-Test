@@ -5,6 +5,7 @@ import 'package:pedometer/pedometer.dart';
 import 'locationSetting.dart';
 import 'customDialog.dart';
 import 'RegularStore.dart';
+import '../app_theme.dart';
 
 
 
@@ -137,7 +138,7 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian Status. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: AppTheme.customDialogButton ,), message: const Text('There is something wrong with the localization or Pedestrian Status. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: AppTheme.customDialogMessage));
         },);
     print(_status);
   }
@@ -154,7 +155,7 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian count. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: AppTheme.customDialogButton,), message: const Text('There is something wrong with the localization or Pedestrian count. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: AppTheme.customDialogMessage));
     },);
   }
 
@@ -178,7 +179,7 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the pedometer. You can try to restart the App, or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: Text('Cancel',style: AppTheme.customDialogButton,), message: Text('There is something wrong with the pedometer. You can try to restart the App, or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: AppTheme.customDialogMessage));
         },);
     }
 
@@ -196,7 +197,7 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: AppTheme.customDialogButton,), message: const Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: AppTheme.customDialogMessage));
         },);
     }
 
@@ -211,10 +212,10 @@ class PedoCheckState extends State<PedoCheck> {
         return customDialog(onPress: (){
           Navigator.pop(context);
           }, 
-          context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the data storage.',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+          context: context, buttonText: const Text('Cancel',style: AppTheme.customDialogButton,), message: const Text('There is something wrong with the data storage.',textAlign: TextAlign.center,style:AppTheme.customDialogMessage));
       },);
     }
-    print('this.}');
+
     //if the currentValues obtain from the storage isn't empty, we validate and load the values
     if(regularStorage.currentValues['totalSteps']!=null){
       print('${regularStorage.currentValues['totalSteps']}');;
@@ -286,7 +287,7 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: const Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: AppTheme.customDialogButton,), message: const Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: AppTheme.customDialogMessage));
         },);
       }
       
@@ -303,8 +304,8 @@ class PedoCheckState extends State<PedoCheck> {
           return customDialog(onPress: (){
             Navigator.pop(context);
             }, 
-            context: context, buttonText: const Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 
-            message: const Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+            context: context, buttonText: const Text('Cancel',style: AppTheme.customDialogButton,), 
+            message: const Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: AppTheme.customDialogMessage));
         },);
         }
       );

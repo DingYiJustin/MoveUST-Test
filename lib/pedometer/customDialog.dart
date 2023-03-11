@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../app_theme.dart';
 
 /**
  * Dialog for require location permission
  */
 
 class customDialog extends StatelessWidget {
-  customDialog({super.key,required this.onPress, required this.context, this.horizontalPadding, this.verticalPadding, this.buttonText = const Text('Set permission', style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), this.message= const Text('The app needs permenant location permission to validate your steps in background', textAlign: TextAlign.center, softWrap: true,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,),) });
+  customDialog({super.key,required this.onPress, required this.context, this.horizontalPadding, this.verticalPadding, this.buttonText = const Text('Set permission', style:AppTheme.customDialogButton,), this.message= const Text('The app needs permenant location permission to validate your steps in background', textAlign: TextAlign.center, softWrap: true,style: AppTheme.customDialogMessage)} );
   late Function onPress;
   late BuildContext context;
   late double? horizontalPadding;
@@ -25,7 +26,7 @@ class customDialog extends StatelessWidget {
     print(MediaQuery.of(context).size.width);
     return 
     Material(
-    color: Color.fromARGB(0, 255, 255, 255),
+    color: const Color.fromARGB(0, 255, 255, 255),
     child:Container(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding!, vertical:verticalPadding!),
       child: Container(
