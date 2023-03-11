@@ -1,4 +1,4 @@
-#Sat Feb 04 15:51:13 HKT 2023
-base.0=/Users/justinding/Documents/Front End Learning/Dart_Flutter/flutter_application_1/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Sat Mar 04 16:44:40 CST 2023
+base.0=C\:\\Users\\Jason\\MoveUST-Test\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
