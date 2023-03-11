@@ -32,7 +32,7 @@ class _RedemptionPageState extends State<RedemptionPage> {
       data: jsonEncode(
           {
             "data": AESEncryption.encryptMsg(jsonEncode(item))
-                .getByte(),
+                .bytes,
           }),
       version: QrVersions.auto,
       size: 100.0,

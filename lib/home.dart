@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/QRScanner.dart';
+import 'package:flutter_application_1/app_theme.dart';
+import 'package:flutter_application_1/pedometer/Pedometer.dart';
 import 'RedemptionPage/Redemption_Page.dart';
 
 class Home extends StatelessWidget {
@@ -10,9 +12,18 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("MoveUST"),),
+        title: const Center(child: Text("MoveUST"),),
         actions: []),
-      body:  const QRScanner(),
+      body:  const PedoCheck(),
+      drawer: Drawer(child: ListView.builder(itemCount: 1, itemBuilder: (context, index){
+          return  InkWell(
+            child: const Text('Redemption',style: AppTheme.customDialogButton,),
+            onTap: (){
+              Navigator.pushNamed(context, "/Redemp");
+            }
+          );
+          
+      }),),
     );
   }
 }

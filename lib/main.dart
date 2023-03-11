@@ -64,10 +64,14 @@
 
 
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'home.dart';
 
 import 'package:flutter/services.dart';
+import 'RedemptionPage/Redemption_Page.dart';
+
 
 
 String formatDate(DateTime d) {
@@ -94,7 +98,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      // home: Home(),
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => const Home(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/Redemp': (context) => RedemptionPage(data: jsonEncode({
+                                "redemptionList":[
+                                {
+                                "user_id" : "0001",
+                                "redemption_time": "2019-09-26T16:17:24+05:00",
+                                "point": "500"
+                                },
+                                {
+                                "user_id" : "0002",
+                                "redemption_time": "2019-09-26T16:17:24+05:00",
+                                "point": "100"
+                                }
+                                ]
+                                })),
+      },
     );
   }
 }
