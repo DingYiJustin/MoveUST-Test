@@ -1,12 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:pedometer/pedometer.dart';
-
-import 'dart:math' show cos, sqrt, asin;
-import 'package:location/location.dart';
+import 'locationSetting.dart';
+import 'customDialog.dart';
+import 'RegularStore.dart';
 
 
 
@@ -14,25 +12,19 @@ class PedoCheck extends StatefulWidget {
   const PedoCheck({super.key});
 
   @override
-  State<PedoCheck> createState() => _PedoCheckState();
+  State<PedoCheck> createState() => PedoCheckState();
 }
 
-class _PedoCheckState extends State<PedoCheck> {
+class PedoCheckState extends State<PedoCheck> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
-  //The last previous position updated
-  late LocationData lastPos;
-  //If the position is 30 meters away compared to the last position, the moving is true
-  bool moving = false; 
   //The counter to check whether the position should be update to lastPos
   int counter = 0;
   //The counter to check whether the lastSteps should be update
   int stepCounter =0;
-  //The timer to set the moving to false after it has been set to true
-  Timer positionTimer = Timer(Duration(days: 1), (){});
   //The timer to have a smooth update of step count
-  Timer stepTimer = Timer(Duration(days: 1),(){});
+  Timer stepTimer = Timer(Duration(seconds: 1),(){});
   //totalSteps moved after starting the app
   int totalSteps = 0;
   //totalSteps presented in the screen
@@ -40,47 +32,30 @@ class _PedoCheckState extends State<PedoCheck> {
   //the last total Step walked (today?) retrieved from the pedometer api
   int lastSteps = 0;
 
+  //in order to let it update the lastSteps for the first time
   bool shouldUpdateLastSteps = true;
 
-  //the last position recorded
-  late LocationData prePos;
-  //the totalDistance the user traveled since last update
-  double totalDist = 0;
-  //the totalDistance since last position (lastPos) update
-  double totalDistSinceLastUpdate = 0; 
-  //determined whether the user have moved distance recorded since last position (lastPos) update
-  bool moved = false;
+  late locationSettings loc;
+  locationSettings get getLoc => loc; //getter of loc for testing
 
-  late Location location;
-  
+  //check if it is the first time entering the app today? if yes, init the settings when starting
+  bool firstEnter = true;
 
-  Future<LocationData> getPermission() async{
-    location = new Location();
+  //subscripts to cancel the event listener when stop
+  late StreamSubscription stepSubscript;
+  late StreamSubscription statusSubscript;
+  late StreamSubscription locationSubscript;
 
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
+  //multi start results in multi subscription in location stream, this avoid multi start and multi pause
+  bool started = false;
 
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return Future.error("Location services are disabled");
-      }
-    }
+  //since I may manually set the status to stop when user click stop button, I should use 
+  //switchStatus to determine whether i should set the status back to walking
+  bool switchStatus = false;
 
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    return _locationData = await location.getLocation();
-  }
-
-
+  //regularStorage for managing data to store
+  late RegularStorage regularStorage;
+  late Timer regularStoreTimer;
 
   @override
   void initState() {
@@ -98,7 +73,7 @@ class _PedoCheckState extends State<PedoCheck> {
       //if the stepCounter is equal to ten
         //update the last steps otherwise all the steps 
         //after opening the app will be recorded
-    if(moving){
+    if(loc.moving && !shouldUpdateLastSteps){
       int newSteps = event.steps-lastSteps;
       stepTimer.cancel();
 
@@ -124,6 +99,8 @@ class _PedoCheckState extends State<PedoCheck> {
 
     }
     else{
+      //trying to store some steps so that when the user is first moving 
+      //some of the steps may be recorded (maximum 60 steps stores)
       stepTimer.cancel();
       if(shouldUpdateLastSteps){
         shouldUpdateLastSteps = false;
@@ -140,9 +117,11 @@ class _PedoCheckState extends State<PedoCheck> {
   }
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
+    print('Pedo Status Change');
     print(event);
     setState(() {
       _status = event.status;
+      loc.status = _status;
     });
   }
 
@@ -151,6 +130,15 @@ class _PedoCheckState extends State<PedoCheck> {
     setState(() {
       _status = 'Pedestrian Status not available';
     });
+    //warn user when there is something wrong with pedo status
+    showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(onPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian Status. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
     print(_status);
   }
 
@@ -159,129 +147,262 @@ class _PedoCheckState extends State<PedoCheck> {
     setState(() {
       _steps = 'Step Count not available';
     });
+    //warn user when there is something wrong with pedo counting
+    showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(onPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or Pedestrian count. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+    },);
   }
 
-  // calculate the distance between to lat lon location
-  double convertLatLonToDistance(LocationData position, LocationData lastPos){
-    var p = 0.017453292519943295;
-            var c = cos;
-            var a = 0.5 - c((position.latitude! - lastPos.latitude!) * p)/2 + 
-                  c(lastPos.latitude! * p) * c(position.latitude! * p) * 
-                  (1 - c((position.longitude! - lastPos.longitude!) * p))/2;
-            var dist = 12742 * asin(sqrt(a))*1000;
-    return dist;
-            
-  }
 
   Future<void> initPlatformState() async {
-    lastPos = await getPermission();
     
-    prePos = lastPos;
+    //occasionlly this may throw an error that the pedo status is not avaliable
+    try{
+      _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
 
-    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-    _pedestrianStatusStream
-        .listen(onPedestrianStatusChanged)
-        .onError(onPedestrianStatusError);
+      //Here we subscribe the pedo status stream because we want to know and update the user status when he/she click start
+      statusSubscript = _pedestrianStatusStream
+          .listen(onPedestrianStatusChanged);
+      statusSubscript.onError(onPedestrianStatusError);
+      statusSubscript.pause();
+      
+    }catch(e){
+        await showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(onPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the pedometer. You can try to restart the App, or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
+    }
 
-    _stepCountStream = Pedometer.stepCountStream;
-    _stepCountStream.listen(onStepCount).onError(onStepCountError);
+
+    loc = locationSettings(setParentState: setState, status: _status);
+
+    //check if the initialSettings throws an error, 
+    //if yes, tell the user there is a problem on the permission of localization
+    try{
+      await loc.initialSettings(context);
+    }catch(e){
+      await showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(onPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
+    }
+
+    //try to know if there is an error loading storage
+    try{
+      regularStorage = RegularStorage();
+      await regularStorage.initCurrentValues();
+    }catch(e){
+      await showDialog(
+        barrierDismissible:false ,
+        context: context, builder: (context) {
+        return customDialog(onPress: (){
+          Navigator.pop(context);
+          }, 
+          context: context, buttonText: Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the data storage.',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+      },);
+    }
+    print('this.}');
+    //if the currentValues obtain from the storage isn't empty, we validate and load the values
+    if(regularStorage.currentValues['totalSteps']!=null){
+      print('${regularStorage.currentValues['totalSteps']}');;
+      setState(() {
+        totalSteps =int.parse(regularStorage.currentValues['totalSteps']!);
+        totalStepsInScreen =  totalSteps;
+      });
+    }
+    else{
+      regularStorage.currentValues['totalSteps'] = totalSteps.toString();
+    }
+
+    if(regularStorage.currentValues['totalDist']!=null){
+      print('${regularStorage.currentValues['totalDist']}');;
+      setState(() {
+        loc.totalDist =  double.parse(regularStorage.currentValues['totalDist']!);
+      });
+
+      
+    }else{
+      regularStorage.currentValues['totalDist'] = loc.totalDist.toString();
+    }
+    
+    
+    //regularly check whether the total steps or total distance have been changed
+    //if changed, store it to the secure storage
+    regularStoreTimer = Timer.periodic(const Duration(seconds:10), (timer) async { 
+
+      if(totalSteps!=int.parse(regularStorage.currentValues['totalSteps']!)){
+        print('store');
+        await regularStorage.storageManager.write('totalSteps', totalSteps.toString());
+        print('stored');
+        regularStorage.currentValues['totalSteps']= totalSteps.toString();
+      }
+
+      if((loc.totalDist-double.parse(regularStorage.currentValues['totalDist']!).abs())>0.01){
+        await regularStorage.storageManager.write('totalDist', loc.totalDist.toString());
+        regularStorage.currentValues['totalDist']= loc.totalDist.toString();
+      }
+    });
 
 
-    location.onLocationChanged.listen((LocationData position) {
-      // Use current location
-      if(position.latitude == null || position.longitude==null){
-        print('position is null');
-        return;
+    if (!mounted) return;
+  }
+
+  void startListening(){
+    if(!started){
+
+      //switch the Status to walking first when user click start because I manually set it to false
+      if(switchStatus){
+        setState(() {
+          _status = 'walking';
+        });
+        switchStatus = false;
       }
       
-      //change lat lon location distance to distance in meters
-      double distToPre = convertLatLonToDistance(position, prePos);
+      try{
+        //resume the subscribtion of status stream so that we know whether the user is actually walking
+        statusSubscript.resume();
 
-      //if the user is moving right now, add the distance from last position(prePos) to the total distance 
-      if(moving){
-        if(_status == 'walking'){
-          setState(() {
-            totalDist+=distToPre;
-          });
-        }
+        //initialize the stepcount stream 
+        _stepCountStream = Pedometer.stepCountStream;
+        stepSubscript=_stepCountStream.listen(onStepCount);
+        stepSubscript.onError(onStepCountError);
+      }catch(e){
+        showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(onPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: const Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), message: Text('There is something wrong with the localization or pedometer. You can try to restart the App, manually set the localization permission in your Settings or check if your pedometer in your phone is still usable',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
       }
-      //calculate the total distance moved since lastPos update
-      totalDistSinceLastUpdate+=distToPre;
-        
+      
 
-      //if the distance between the last recorded position and the current position is bigger than 4, 
-      //we update the lastPos to prevent that the distance away exceed 40 after several calls when not moving
-      print("distToPre1:$distToPre");
-      if(distToPre >= 5.0 && !moving){
-          distToPre = 0;
-          double dist = convertLatLonToDistance(position, lastPos);
-          print("total distance before update $dist");
-          print('Update LAST POSITION');
-          lastPos = position;
-          totalDistSinceLastUpdate=0;
-          //Since the steps and totalDist still update when moving is true,
-          //the moved is set to false to allow totalDist update by totalDistSinceLast Update only when moving is false
-          moved = false;
-      }
-      prePos = position;
-
-
-      double dist = convertLatLonToDistance(position, lastPos);
-        
-      print('totalDist:$dist');
-
-
-      //if distance away is greater than 30, we assume that the user is truely walking
-      //then we set the moving to true and set the timer
-      //already tested 20 can be panetrated
-      if(dist >= 30){
-        lastPos = position;
-        distToPre = 0;
-        if(!moved){
-          setState(() {
-            totalDist+=totalDistSinceLastUpdate;
-            print('UPATE WITH TOTALDISTSINCELASTUPDATE');
-          });
-        }
-        totalDistSinceLastUpdate = 0;
-
-        print('Location is updating:');
-        positionTimer.cancel();
-        if(!moving){
-          moving = true;
-        }
-        //Since during moving the totalDist is updated by disToPre, we should set the moved to true
-        moved = true;
-
-        //timer to set the moving value to false after 25 seconds.
-        positionTimer = Timer.periodic(Duration(seconds: 25),(timer){
-          if(moving){
-            moving=false;
-            timer.cancel();
-            totalDistSinceLastUpdate=0;
-            moved = false;
-          }
-          else{
-            timer.cancel();
-          }
-        });
-      }
-    }).onError((error){
-          //When user doesnot "allow location checking forever", the error will occur
+      //initialize the location stream
+      locationSubscript =loc.location.onLocationChanged.listen(loc.onLocationChange);
+      locationSubscript.onError((error){
+          //When user doesnot "allow location checking forever", the error may occur
           //in this case, we should warn the user that their step won't update.
           print('Location Update Error: $error');
+          showDialog(
+          barrierDismissible:false ,
+          context: context, builder: (context) {
+          return customDialog(onPress: (){
+            Navigator.pop(context);
+            }, 
+            context: context, buttonText: const Text('Cancel',style: TextStyle(fontSize: 18,color: Color.fromRGBO(71, 128, 223, 1) ),), 
+            message: const Text('It seems that there is something wrong with the localization. You can try to restart the App or manually set the localization permission in your Settings',textAlign: TextAlign.center,style: TextStyle(fontSize: 16, overflow:TextOverflow.visible,fontWeight: FontWeight.w500,)));
+        },);
         }
-    );
-    
-    
-    location.enableBackgroundMode(enable: true);
+      );
+      // locationSubscript.pause();
+      
+      started = true;
+      if (!mounted) return;
+    }
+  }
 
-    
-    if (!mounted) return;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    stepTimer.cancel();
+    loc.positionTimer.cancel();
+    regularStoreTimer.cancel();
+
   }
 
   @override
   Widget build(BuildContext context) {
+          // build while testing
+  //         return MaterialApp(home:Center(
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: <Widget>[
+  //             Text(
+  //               'Steps taken:',
+  //               style: TextStyle(fontSize: 30),
+  //             ),
+  //             Text(
+  //               totalStepsInScreen.toString(),
+  //               style: TextStyle(fontSize: 60),
+  //             ),
+  //             Divider(
+  //               height: 100,
+  //               thickness: 0,
+  //               color: Colors.white,
+  //             ),
+  //             Text(
+  //               'Pedestrian status:',
+  //               style: TextStyle(fontSize: 30),
+  //             ),
+  //             Icon(
+  //               _status == 'walking'
+  //                   ? Icons.directions_walk
+  //                   : _status == 'stopped'
+  //                       ? Icons.accessibility_new
+  //                       : Icons.error,
+  //               size: 100,
+  //             ),
+  //             Center(
+  //               child: Text(
+  //                 _status,
+  //                 style: _status == 'walking' || _status == 'stopped'
+  //                     ? TextStyle(fontSize: 30)
+  //                     : TextStyle(fontSize: 20, color: Colors.red),
+  //               ),
+  //             ) ,
+  //             Center(
+  //               child: Text(
+  //                 'Distance Walked: ${loc.totalDist}',
+  //                 style: TextStyle(fontSize: 30),
+  //               ),
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //               children: [
+  //                 ElevatedButton(onPressed: (){
+  //                   print('START');
+  //                   startListening();
+  //                 }, child: Text('Start', style: TextStyle(fontSize: 20),)),
+  //                 ElevatedButton(onPressed: (){
+  //                     print("STOP");
+  //                     if(started){
+  //                       statusSubscript.pause();
+  //                       stepSubscript.cancel();
+  //                       locationSubscript.cancel();
+  //                       setState(() {
+  //                         if(_status == 'walking'){
+  //                           _status = 'stopped';
+  //                           switchStatus = true;
+  //                         }
+  //                         shouldUpdateLastSteps = true;
+  //                         started = false;
+
+  //                       });
+  //                     }
+  //                 }, child: Text('Stop', style: TextStyle(fontSize: 20),))
+
+  //               ],
+  //             ),
+              
+  //           ],
+  //         ),
+  //       ));
+  // }
     return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -319,10 +440,49 @@ class _PedoCheckState extends State<PedoCheck> {
                       : TextStyle(fontSize: 20, color: Colors.red),
                 ),
               ) ,
-              Text(
-                'Distance Walked: $totalDist',
-                style: TextStyle(fontSize: 30),
+              Divider(
+                height: 20,
+                thickness: 0,
+                color: Colors.white,
               ),
+              Center(
+                child: 
+                Column(
+                  children: [Text('Distance Walked:',style: TextStyle(fontSize: 30),),
+                  Text('${loc.totalDist.toStringAsFixed(1)}m',style: TextStyle(fontSize: 30),)
+                ],
+                )
+                
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(onPressed: (){
+                    print('START');
+
+                    startListening();
+                  }, child: Text('Start', style: TextStyle(fontSize: 20),)),
+                  ElevatedButton(onPressed: (){
+                      print("STOP");
+                      if(started){
+                        statusSubscript.pause();
+                        stepSubscript.cancel();
+                        locationSubscript.cancel();
+                        setState(() {
+                          if(_status == 'walking'){
+                            _status = 'stopped';
+                            switchStatus = true;
+                          }
+                          shouldUpdateLastSteps = true;
+                          started = false;
+
+                        });
+                      }
+                  }, child: Text('Stop', style: TextStyle(fontSize: 20),))
+
+                ],
+              ),
+              
             ],
           ),
         );
