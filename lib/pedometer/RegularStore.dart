@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'secureStorageManager.dart';
+import 'SecureStorageManager.dart';
 
 class RegularStorage{
   //current values that may be passed to the backend
