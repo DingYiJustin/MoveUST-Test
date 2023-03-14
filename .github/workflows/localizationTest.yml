@@ -1,0 +1,20 @@
+name: localization test
+
+on: 
+  push:
+    branches: [justin]
+
+jobs:
+  localizationTest:
+    runs-on: ubuntu-latest
+    env:
+      JAVA_VERSION: "11.0"
+      FLUTTER_VERSION: "2.5.3"
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.7'
+          channel: 'stable'
+      - run: flutter test test/pedometer_test.dart

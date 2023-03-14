@@ -15,15 +15,18 @@ class Home extends StatelessWidget {
         title: const Center(child: Text("MoveUST"),),
         actions: []),
       body:  const PedoCheck(),
-      drawer: Drawer(child: ListView.builder(itemCount: 1, itemBuilder: (context, index){
-          return  InkWell(
-            child: const Text('Redemption',style: AppTheme.customDialogButton,),
+      drawer: Drawer(child: 
+      ListView(
+        children: [
+          UserAccountsDrawerHeader(accountName: Text("User Name"), accountEmail: Text("xxxxxx@xxx.xxx")),
+          InkWell(
+            child: const ListTile(title: Text('Redemption',style: AppTheme.customDialogButton,),),
             onTap: (){
               Navigator.pushNamed(context, "/Redemp");
             }
-          );
-          
-      }),),
+          )
+        ],
+      ),),
     );
   }
 }
